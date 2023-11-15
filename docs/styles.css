@@ -1,0 +1,140 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Header Styles */
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header img {
+    max-width: 150px;
+    height: auto;
+}
+
+nav ul {
+    padding: 0;
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Hero Section */
+#hero {
+    background: url('path/to/hero-bg.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+#hero h1 {
+    margin-bottom: 0.5rem;
+}
+
+#hero p {
+    font-size: 1.2rem;
+}
+
+/* Features Overview */
+#features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2rem;
+    text-align: center;
+}
+
+#features div {
+    flex-basis: 30%;
+    margin-bottom: 1rem;
+}
+
+#features img {
+    max-width: 100px;
+    margin-bottom: 0.5rem;
+}
+
+/* Monitoring Dashboard */
+#monitoring {
+    background: #eaeaea;
+    padding: 2rem;
+}
+
+#monitoring h2 {
+    text-align: center;
+}
+
+/* Control Panel */
+#controls {
+    padding: 2rem;
+}
+
+#controls h2 {
+    text-align: center;
+}
+
+/* Alerts Section */
+#alerts {
+    background: #eaeaea;
+    padding: 2rem;
+}
+
+#alerts h2 {
+    text-align: center;
+}
+
+/* About Section */
+#about {
+    padding: 2rem;
+}
+
+#about h2 {
+    text-align: center;
+}
+
+/* Parts List */
+#parts {
+    background: #eaeaea;
+    padding: 2rem;
+}
+
+#parts h2 {
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #features div {
+        flex-basis: 45%;
+    }
+}
