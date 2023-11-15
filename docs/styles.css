@@ -4,26 +4,21 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    color: #333;
-    background-color: #f4f4f4;
+    color: #ddd; /* Light grey text for contrast */
+    background-color: #1a1a1a; /* Dark background */
 }
 
 a {
-    color: #333;
+    color: #4db8ff; /* Bright blue for links */
     text-decoration: none;
 }
 
 /* Header Styles */
 header {
-    background: #333;
-    color: #fff;
+    background: #262626; /* Slightly lighter dark shade for header */
+    color: #fff; /* White text */
     padding: 1rem 0;
     text-align: center;
-}
-
-header img {
-    max-width: 150px;
-    height: auto;
 }
 
 nav ul {
@@ -37,14 +32,14 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #fff; /* White text for navigation */
     font-weight: bold;
 }
 
 /* Hero Section */
 #hero {
-    background: url('path/to/hero-bg.jpg') no-repeat center center/cover;
-    color: #fff;
+    background: #333; /* Dark background for hero section */
+    color: #fff; /* White text */
     text-align: center;
     padding: 2rem 0;
 }
@@ -64,22 +59,20 @@ nav ul li a {
     justify-content: space-around;
     padding: 2rem;
     text-align: center;
+    background: #2b2b2b; /* Dark background for features */
 }
 
 #features div {
     flex-basis: 30%;
     margin-bottom: 1rem;
-}
-
-#features img {
-    max-width: 100px;
-    margin-bottom: 0.5rem;
+    color: #fff; /* White text for features */
 }
 
 /* Monitoring Dashboard */
 #monitoring {
-    background: #eaeaea;
+    background: #333; /* Dark background for monitoring */
     padding: 2rem;
+    color: #fff; /* White text for monitoring */
 }
 
 #monitoring h2 {
@@ -89,6 +82,8 @@ nav ul li a {
 /* Control Panel */
 #controls {
     padding: 2rem;
+    background: #2b2b2b; /* Dark background for controls */
+    color: #fff; /* White text for controls */
 }
 
 #controls h2 {
@@ -97,8 +92,9 @@ nav ul li a {
 
 /* Alerts Section */
 #alerts {
-    background: #eaeaea;
+    background: #333; /* Dark background for alerts */
     padding: 2rem;
+    color: #fff; /* White text for alerts */
 }
 
 #alerts h2 {
@@ -108,6 +104,8 @@ nav ul li a {
 /* About Section */
 #about {
     padding: 2rem;
+    background: #2b2b2b; /* Dark background for about */
+    color: #fff; /* White text for about */
 }
 
 #about h2 {
@@ -116,8 +114,9 @@ nav ul li a {
 
 /* Parts List */
 #parts {
-    background: #eaeaea;
+    background: #333; /* Dark background for parts list */
     padding: 2rem;
+    color: #fff; /* White text for parts list */
 }
 
 #parts h2 {
@@ -126,7 +125,7 @@ nav ul li a {
 
 /* Footer */
 footer {
-    background: #333;
+    background: #262626; /* Slightly lighter dark shade for footer */
     color: #fff;
     text-align: center;
     padding: 1rem 0;
