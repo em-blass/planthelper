@@ -24,6 +24,6 @@ The Automated Plant Caretaker is an innovative IoT project aimed at revolutioniz
 ## Conclusion
 The Automated Plant Caretaker is an all-in-one system that combines gardening with smart technology. It keeps plants in the perfect conditions, making it easy for users by taking the guesswork out of plant care, leading to better growth. Additionally, it offers a practical introduction to IoT development through its integration of cloud technology, sensors, and automatic controls.
 
-## Group Members
+## Team Members
 - Emmet Blassingame
 - Blake Brown
