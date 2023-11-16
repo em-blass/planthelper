@@ -10,29 +10,46 @@
     </head>
     <body class="is-preload">
 
-        <!-- Main Content Area -->
-        <div id="wrapper" style="text-align: center;">
-            <section class="wrapper style1 fullscreen fade-up">
-                <div class="inner">
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="title">Automated Plant Caretaker</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="elements.html">Elements</a></li>
+                    <li><a href="generic.html">Generic</a></li>
+                </ul>
+            </nav>
+        </header>
 
-                    <!-- Back to Home Button -->
-                    <a href="index.html" style="position: absolute; top: 15px; left: 15px; font-size: 1em; text-decoration: none; color: #FFFFFF; background-color: #007BFF; padding: 10px; border-radius: 5px;">Back to Home</a>
-                    
-                    <h1 style="margin-top: 0;">Terminal:</h1>
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <section id="main" class="wrapper">
+                <div class="inner">
+                    <h1 class="major" style="text-align: center;">Terminal:</h1>
 
                     <!-- Room for AWS Terminal Integration -->
-                    <div id="aws-terminal-container">
+                    <div id="aws-terminal-container" style="text-align: center;">
                         <!-- AWS Terminal will be integrated here later -->
                     </div>
+
+                    <!-- Back to Home Button -->
+                    <ul class="actions" style="text-align: center; margin-top: 20px;">
+                        <li><a href="index.html" class="button primary">Back to Home</a></li>
+                    </ul>
                 </div>
             </section>
+
         </div>
 
         <!-- Footer -->
-        <footer id="footer" class="wrapper style1-alt">
+        <footer id="footer" class="wrapper alt">
             <div class="inner">
                 <ul class="menu">
                     <li>&copy; Automated Plant Caretaker. All rights reserved.</li>
+                    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
                 </ul>
             </div>
         </footer>
@@ -45,7 +62,6 @@
         <script src="assets/js/breakpoints.min.js"></script>
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
-        <script src="login.js"></script>
 
     </body>
 </html>
