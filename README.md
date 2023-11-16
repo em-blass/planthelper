@@ -1,4 +1,4 @@
-PlantHelper
+# PlantHelper
 
 ## Group Members
 - Emmet Blassingame
