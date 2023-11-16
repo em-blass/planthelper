@@ -18,6 +18,7 @@ The Automated Plant Caretaker is an innovative IoT project aimed at revolutioniz
 - 5V Relay Module x1
 - Silicon Tubing x1
 - Power Supply for Raspberry Pi
+- Power Supply for SWP
 - Miscellaneous (cables, connectors, breadboard, mounting tools, SD for OS)
 
 ## Conclusion
