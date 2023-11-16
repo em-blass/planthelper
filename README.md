@@ -1,9 +1,5 @@
 # PlantHelper
 
-## Group Members
-- Emmet Blassingame
-- Blake Brown
-
 ## Project Description
 The Automated Plant Caretaker is an innovative IoT project aimed at revolutionizing home gardening. Using a Raspberry Pi as the brain, this project employs various sensors to assess the vital parameters that affect plant health such as soil moisture, ambient light, temperature, and humidity. The system automatically adjusts watering schedules based on real-time sensor data, ensuring optimal plant growth. Additionally, the cloud-connected web application facilitates remote monitoring and control, providing a comprehensive solution for both novice and experienced gardeners to maintain their gardens with ease and efficiency.
 
@@ -31,3 +27,7 @@ The Automated Plant Caretaker is an innovative IoT project aimed at revolutioniz
 
 ## Conclusion
 The Automated Plant Caretaker is an all-in-one system that combines gardening with smart technology. It keeps plants in the perfect conditions, making it easy for users by taking the guesswork out of plant care, leading to better growth. Additionally, it offers a practical introduction to IoT development through its integration of cloud technology, sensors, and automatic controls.
+
+## Group Members
+- Emmet Blassingame
+- Blake Brown
