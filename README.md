@@ -17,11 +17,8 @@ The Automated Plant Caretaker is an innovative IoT project aimed at revolutioniz
 - Submersible Water Pump x1
 - 5V Relay Module x1
 - Silicon Tubing x1
-- Water Reservoir x1
-- ESP8266 Wi-Fi Module x1 (May be unnecessary)
 - Power Supply for Raspberry Pi
-- Micro SD Card for Raspberry Pi
-- Miscellaneous (cables, connectors, breadboard, mounting tools)
+- Miscellaneous (cables, connectors, breadboard, mounting tools, SD for OS)
 
 ## Conclusion
 The Automated Plant Caretaker is an all-in-one system that combines gardening with smart technology. It keeps plants in the perfect conditions, making it easy for users by taking the guesswork out of plant care, leading to better growth. Additionally, it offers a practical introduction to IoT development through its integration of cloud technology, sensors, and automatic controls.
