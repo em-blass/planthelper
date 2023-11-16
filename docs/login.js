@@ -6,8 +6,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
     if (username === 'admin' && password === 'admin') {
         alert('Login successful!');
-        // Redirect to another page or perform some action
-        window.location.href = 'welcome.html'; // Redirect to a welcome page
+        window.location.href = 'welcome.html';
     } else {
         alert('Invalid Credentials');
     }
