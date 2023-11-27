@@ -24,46 +24,23 @@
         </div>
     </section>
 
+    <!-- Navigation Buttons -->
+    <div class="sensor-navigation">
+        <button onclick="navigateToSensor(0)">Dirt Moisture Sensor</button>
+        <button onclick="navigateToSensor(1)">Temperature Sensor</button>
+        <button onclick="navigateToSensor(2)">Humidity Sensor</button>
+        <button onclick="navigateToSensor(3)">Light Sensor</button>
+    </div>
+
     <!-- Wrapper -->
     <div id="wrapper">
         <!-- Sensor Management Carousel -->
         <section class="wrapper style2">
             <div class="inner">
                 <div id="sensorCarousel" class="carousel slide" data-ride="carousel">
-
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#sensorCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#sensorCarousel" data-slide-to="1"></li>
-                        <li data-target="#sensorCarousel" data-slide-to="2"></li>
-                        <li data-target="#sensorCarousel" data-slide-to="3"></li>
-                    </ol>
-
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <h3>Dirt Moisture Sensor</h3>
-                            <!-- Forms for Dirt Moisture Sensor -->
-                            <!-- ... -->
-                        </div>
-
-                        <div class="item">
-                            <h3>Temperature Sensor</h3>
-                            <!-- Forms for Temperature Sensor -->
-                            <!-- ... -->
-                        </div>
-
-                        <div class="item">
-                            <h3>Humidity Sensor</h3>
-                            <!-- Forms for Humidity Sensor -->
-                            <!-- ... -->
-                        </div>
-
-                        <div class="item">
-                            <h3>Light Sensor</h3>
-                            <!-- Forms for Light Sensor -->
-                            <!-- ... -->
-                        </div>
+                        <!-- Sensor Sections Here -->
                     </div>
                 </div>
             </div>
@@ -82,5 +59,10 @@
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!-- Bootstrap JavaScript -->
+    <script>
+        function navigateToSensor(index) {
+            $('#sensorCarousel').carousel(index);
+        }
+    </script>
 </body>
 </html>
