@@ -40,29 +40,47 @@
                     <!-- Dirt Moisture Sensor -->
                     <div class="sensor" id="dirt-moisture-sensor">
                         <h3>Dirt Moisture Sensor</h3>
-                        <!-- Forms for Dirt Moisture Sensor -->
-                        <!-- ... -->
+                        <p><strong>Dirt Weight:</strong> Percent value representing the significance of the dirt moisture sensor readings.</p>
+                        <p><strong>Current Value:</strong> 0.08</p>
+                        <p><strong>Dirt Max Value:</strong> The maximum value that can be stored for the dirt moisture sensor.</p>
+                        <p><strong>Current Value:</strong> 8000</p>
+                        <p><strong>Dirt Min Value:</strong> The minimum value that can be stored for the dirt moisture sensor.</p>
+                        <p><strong>Current Value:</strong> 80</p>
+                        <p><strong>Emergency Minimum Value:</strong> If the dirt moisture sensor reads below the emergency minimum value, watering is forced to begin.</p>
+                        <p><strong>Current Value:</strong> 9</p>
                     </div>
 
                     <!-- Temperature Sensor -->
                     <div class="sensor" id="temperature-sensor">
                         <h3>Temperature Sensor</h3>
-                        <!-- Forms for Temperature Sensor -->
-                        <!-- ... -->
+                        <p><strong>Temperature Weight:</strong> Percent value representing the significance of the temperature sensor readings.</p>
+                        <p><strong>Current Value:</strong> 0.06</p>
+                        <p><strong>Temperature Max Value:</strong> The maximum value that can be stored for the temperature sensor.</p>
+                        <p><strong>Current Value:</strong> 6500</p>
+                        <p><strong>Temperature Min Value:</strong> The minimum value that can be stored for the temperature sensor.</p>
+                        <p><strong>Current Value:</strong> 65</p>
                     </div>
 
                     <!-- Humidity Sensor -->
                     <div class="sensor" id="humidity-sensor">
                         <h3>Humidity Sensor</h3>
-                        <!-- Forms for Humidity Sensor -->
-                        <!-- ... -->
+                        <p><strong>Humidity Weight:</strong> Percent value representing the significance of the humidity sensor readings.</p>
+                        <p><strong>Current Value:</strong> 0.04</p>
+                        <p><strong>Humidity Max Value:</strong> The maximum value that can be stored for the humidity sensor.</p>
+                        <p><strong>Current Value:</strong> 4000</p>
+                        <p><strong>Humidity Min Value:</strong> The minimum value that can be stored for the humidity sensor.</p>
+                        <p><strong>Current Value:</strong> 40</p>
                     </div>
 
                     <!-- Light Sensor -->
                     <div class="sensor" id="light-sensor">
                         <h3>Light Sensor</h3>
-                        <!-- Forms for Light Sensor -->
-                        <!-- ... -->
+                        <p><strong>Light Weight:</strong> Percent value representing the significance of the light sensor readings.</p>
+                        <p><strong>Current Value:</strong> 0.02</p>
+                        <p><strong>Light Max Value:</strong> The maximum value that can be stored for the light sensor.</p>
+                        <p><strong>Current Value:</strong> 2000</p>
+                        <p><strong>Light Min Value:</strong> The minimum value that can be stored for the light sensor.</p>
+                        <p><strong>Current Value:</strong> 20</p>
                     </div>
                 </div>
             </div>
@@ -97,7 +115,12 @@
             document.querySelector(".prev").addEventListener("click", function() {
                 if (currentIndex > 0) {
                     currentIndex--;
-                    carousel.style.transform = 'translate
+                    carousel.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                }
+            });
+            // Add next button functionality
+            // ...
+        });
     </script>
 </body>
 </html>
