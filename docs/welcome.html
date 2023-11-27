@@ -30,6 +30,34 @@
     <!-- Wrapper -->
     <div id="wrapper">
 
+        <div id="content">
+            <!-- Sensor Management Interface -->
+            <section>
+                <div class="inner">
+                    <header class="major">
+                        <h1>Sensor Management</h1>
+                    </header>
+                    
+                    <!-- Paste the sensor management interface code here -->
+
+                    <hr>
+                    <h1>Dirt Moisture Sensor</h1>
+                    <form onsubmit="updateVals('inputDirtWeight', 'DirtMoisture', 'weight'); return false;">
+                        <h2>Dirt Weight</h2>
+                        <p>Percent value representing the significance of the dirt moisture sensor readings.</p>
+                        <div class="parameter-input">
+                            <p>Current Value:</p>
+                            <p class="current-value" id="dirtWeight">0</p>
+                        </div>
+                        <input type="number" class="value-textbox" id="inputDirtWeight" min="0" max="1" step="0.01">
+                        <input type="submit" class="submit-button" value="Change Value">
+                    </form>
+
+                    <!-- Repeat the above form structure for other sensors -->
+
+                </div>
+            </section>
+        </div>
     </div>
 
     <footer id="footer" class="wrapper style1-alt">
@@ -58,6 +86,12 @@
                 sensorInfo.style.display = "block";
             }
         }
+    </script>
+
+    <!-- AWS SDK and Sensor Management JavaScript code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
+    <script>
+        // Your AWS SDK and Sensor Management JavaScript code here
     </script>
 </body>
 </html>
