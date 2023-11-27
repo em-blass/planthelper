@@ -3907,3 +3907,35 @@ input, select, textarea {
 			}
 
 		}
+
+.sensor-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-nav {
+    text-align: center;
+}
+
+.carousel-nav button {
+    background: #5e42a6;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    margin: 0.5em;
+    cursor: pointer;
+}
+
+.carousel-content {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.sensor {
+    flex: 0 0 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 2em;
+    text-align: center;
+}
