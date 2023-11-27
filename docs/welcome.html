@@ -1,97 +1,93 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html>
 <head>
-    <title>Automated Plant Caretaker - Sensor Management</title>
+    <title>Welcome to Hyperspace</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Sensor management interface for Automated Plant Caretaker." />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <style>
-        .sensor-info {
-            display: none;
-        }
-    </style>
 </head>
-<body class="is-preload" onload="loadVals()">
+<body class="is-preload">
 
-    <!-- Sidebar -->
-    <section id="sidebar">
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="title">Hyperspace</a>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="generic.html">Generic</a></li>
+            <li><a href="elements.html">Elements</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
         <div class="inner">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </section>
+            <h1 class="major">Welcome to Hyperspace</h1>
 
-    <!-- Wrapper -->
-    <div id="wrapper">
-
-        <div id="content">
-            <!-- Sensor Management Interface -->
+            <!-- Text -->
             <section>
-                <div class="inner">
-                    <header class="major">
-                        <center><h1>Terminal</h1></center>
-                    </header>
-                    
-                    <!-- Paste the sensor management interface code here -->
+                <h2>About Us</h2>
+                <p>Welcome to Hyperspace, your gateway to the future of web development. We are dedicated to creating stunning and user-friendly websites for both personal and commercial use. Our mission is to provide you with the tools and knowledge to make your online presence shine.</p>
+                <p>Whether you're a seasoned developer or just starting, we have something for you. Explore our range of web elements, design resources, and more to supercharge your projects.</p>
+            </section>
 
-                    <hr>
-                    <h1>Dirt Moisture Sensor</h1>
-                    <form onsubmit="updateVals('inputDirtWeight', 'DirtMoisture', 'weight'); return false;">
-                        <h2>Dirt Weight</h2>
-                        <p>Percent value representing the significance of the dirt moisture sensor readings.</p>
-                        <div class="parameter-input">
-                            <p>Current Value:</p>
-                            <p class="current-value" id="dirtWeight">0</p>
-                        </div>
-                        <input type="number" class="value-textbox" id="inputDirtWeight" min="0" max="1" step="0.01">
-                        <input type="submit" class="submit-button" value="Change Value">
-                    </form>
-
-                    <!-- Repeat the above form structure for other sensors -->
-
+            <!-- Features -->
+            <section>
+                <h2>Key Features</h2>
+                <div class="features">
+                    <div class="feature">
+                        <span class="icon solid fa-globe"></span>
+                        <h3>Global Reach</h3>
+                        <p>Expand your online reach with our versatile and customizable web elements.</p>
+                    </div>
+                    <div class="feature">
+                        <span class="icon solid fa-cogs"></span>
+                        <h3>Easy Integration</h3>
+                        <p>Seamlessly integrate our elements into your projects with simple code snippets.</p>
+                    </div>
+                    <div class="feature">
+                        <span class="icon solid fa-lightbulb"></span>
+                        <h3>Creative Solutions</h3>
+                        <p>Unlock your creativity and bring your web design ideas to life.</p>
+                    </div>
                 </div>
             </section>
+
+            <!-- Call to Action -->
+            <section>
+                <h2>Get Started</h2>
+                <p>Ready to embark on your web development journey? Explore our elements, check out our resources, and start building amazing websites today!</p>
+                <ul class="actions">
+                    <li><a href="elements.html" class="button primary">Explore Elements</a></li>
+                </ul>
+            </section>
         </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper alt">
+    <div class="inner">
+        <ul class="menu">
+            <li>&copy; 2023 Hyperspace. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
     </div>
+</footer>
 
-    <footer id="footer" class="wrapper style1-alt">
-        <div class="inner">
-            <ul class="menu">
-                <li>&copy; Automated Plant Caretaker. All rights reserved.</li>
-            </ul>
-        </div>
-    </footer>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-
-    <!-- Sensor Dropdown functionality -->
-    <script>
-        function toggleSensorInfo(sensorId) {
-            var sensorInfo = document.getElementById(sensorId + '-info');
-            if (sensorInfo.style.display === "block") {
-                sensorInfo.style.display = "none";
-            } else {
-                sensorInfo.style.display = "block";
-            }
-        }
-    </script>
-
-    <!-- AWS SDK and Sensor Management JavaScript code -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
-    <script>
-        // Your AWS SDK and Sensor Management JavaScript code here
-    </script>
 </body>
 </html>
