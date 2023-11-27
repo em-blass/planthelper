@@ -3939,3 +3939,12 @@ input, select, textarea {
     padding: 2em;
     text-align: center;
 }
+
+.carousel-inner .item {
+    text-align: center;
+    min-height: 300px; /* Adjust as needed */
+    background-color: #f5f5f5; /* Light background for the content area */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
