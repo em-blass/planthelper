@@ -10,6 +10,36 @@
     <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <style>
+        /* Additional CSS for improved styling */
+        .sensor {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sensor:hover {
+            background-color: #e6e6e6;
+        }
+
+        .sensor h3 {
+            font-size: 1.2rem;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .sensor p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Hide sensor info by default */
         .sensor-info {
             display: none;
         }
@@ -36,8 +66,8 @@
             <div class="inner sensor-carousel">
                 <!-- Sensor Content -->
                 <!-- Dirt Moisture Sensor -->
-                <div class="sensor">
-                    <h3 onclick="toggleSensorInfo('dirt-moisture-sensor')">Dirt Moisture Sensor</h3>
+                <div class="sensor" id="dirt-moisture-sensor">
+                    <h3>Dirt Moisture Sensor</h3>
                     <div class="sensor-info" id="dirt-moisture-sensor-info">
                         <p><strong>Dirt Weight:</strong> Percent value representing the significance of the dirt moisture sensor readings.</p>
                         <p><strong>Current Value:</strong> 0.08</p>
@@ -51,8 +81,8 @@
                 </div>
 
                 <!-- Temperature Sensor -->
-                <div class="sensor">
-                    <h3 onclick="toggleSensorInfo('temperature-sensor')">Temperature Sensor</h3>
+                <div class="sensor" id="temperature-sensor">
+                    <h3>Temperature Sensor</h3>
                     <div class="sensor-info" id="temperature-sensor-info">
                         <p><strong>Temperature Weight:</strong> Percent value representing the significance of the temperature sensor readings.</p>
                         <p><strong>Current Value:</strong> 0.06</p>
@@ -64,8 +94,8 @@
                 </div>
 
                 <!-- Humidity Sensor -->
-                <div class="sensor">
-                    <h3 onclick="toggleSensorInfo('humidity-sensor')">Humidity Sensor</h3>
+                <div class="sensor" id="humidity-sensor">
+                    <h3>Humidity Sensor</h3>
                     <div class="sensor-info" id="humidity-sensor-info">
                         <p><strong>Humidity Weight:</strong> Percent value representing the significance of the humidity sensor readings.</p>
                         <p><strong>Current Value:</strong> 0.04</p>
@@ -77,8 +107,8 @@
                 </div>
 
                 <!-- Light Sensor -->
-                <div class="sensor">
-                    <h3 onclick="toggleSensorInfo('light-sensor')">Light Sensor</h3>
+                <div class="sensor" id="light-sensor">
+                    <h3>Light Sensor</h3>
                     <div class="sensor-info" id="light-sensor-info">
                         <p><strong>Light Weight:</strong> Percent value representing the significance of the light sensor readings.</p>
                         <p><strong>Current Value:</strong> 0.02</p>
