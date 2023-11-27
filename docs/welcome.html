@@ -9,41 +9,6 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <style>
-        /* Additional CSS for improved styling */
-        .sensor {
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .sensor:hover {
-            background-color: #e6e6e6;
-        }
-
-        .sensor h3 {
-            font-size: 1.2rem;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        .sensor p {
-            margin: 5px 0;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Hide sensor info by default */
-        .sensor-info {
-            display: none;
-        }
-    </style>
 </head>
 <body class="is-preload" onload="loadVals()">
 
@@ -61,14 +26,20 @@
     <!-- Wrapper -->
     <div id="wrapper">
 
-        <!-- Sensor Management -->
+        <!-- Sensor Management Carousel -->
         <section class="wrapper style2">
             <div class="inner sensor-carousel">
-                <!-- Sensor Content -->
-                <!-- Dirt Moisture Sensor -->
-                <div class="sensor" id="dirt-moisture-sensor">
-                    <h3>Dirt Moisture Sensor</h3>
-                    <div class="sensor-info" id="dirt-moisture-sensor-info">
+                <!-- Carousel Navigation -->
+                <div class="carousel-nav">
+                    <button class="prev">Prev</button>
+                    <button class="next">Next</button>
+                </div>
+
+                <!-- Carousel Content -->
+                <div class="carousel-content">
+                    <!-- Dirt Moisture Sensor -->
+                    <div class="sensor" id="dirt-moisture-sensor">
+                        <h3>Dirt Moisture Sensor</h3>
                         <p><strong>Dirt Weight:</strong> Percent value representing the significance of the dirt moisture sensor readings.</p>
                         <p><strong>Current Value:</strong> 0.08</p>
                         <p><strong>Dirt Max Value:</strong> The maximum value that can be stored for the dirt moisture sensor.</p>
@@ -78,12 +49,10 @@
                         <p><strong>Emergency Minimum Value:</strong> If the dirt moisture sensor reads below the emergency minimum value, watering is forced to begin.</p>
                         <p><strong>Current Value:</strong> 9</p>
                     </div>
-                </div>
 
-                <!-- Temperature Sensor -->
-                <div class="sensor" id="temperature-sensor">
-                    <h3>Temperature Sensor</h3>
-                    <div class="sensor-info" id="temperature-sensor-info">
+                    <!-- Temperature Sensor -->
+                    <div class="sensor" id="temperature-sensor">
+                        <h3>Temperature Sensor</h3>
                         <p><strong>Temperature Weight:</strong> Percent value representing the significance of the temperature sensor readings.</p>
                         <p><strong>Current Value:</strong> 0.06</p>
                         <p><strong>Temperature Max Value:</strong> The maximum value that can be stored for the temperature sensor.</p>
@@ -91,12 +60,10 @@
                         <p><strong>Temperature Min Value:</strong> The minimum value that can be stored for the temperature sensor.</p>
                         <p><strong>Current Value:</strong> 65</p>
                     </div>
-                </div>
 
-                <!-- Humidity Sensor -->
-                <div class="sensor" id="humidity-sensor">
-                    <h3>Humidity Sensor</h3>
-                    <div class="sensor-info" id="humidity-sensor-info">
+                    <!-- Humidity Sensor -->
+                    <div class="sensor" id="humidity-sensor">
+                        <h3>Humidity Sensor</h3>
                         <p><strong>Humidity Weight:</strong> Percent value representing the significance of the humidity sensor readings.</p>
                         <p><strong>Current Value:</strong> 0.04</p>
                         <p><strong>Humidity Max Value:</strong> The maximum value that can be stored for the humidity sensor.</p>
@@ -104,12 +71,10 @@
                         <p><strong>Humidity Min Value:</strong> The minimum value that can be stored for the humidity sensor.</p>
                         <p><strong>Current Value:</strong> 40</p>
                     </div>
-                </div>
 
-                <!-- Light Sensor -->
-                <div class="sensor" id="light-sensor">
-                    <h3>Light Sensor</h3>
-                    <div class="sensor-info" id="light-sensor-info">
+                    <!-- Light Sensor -->
+                    <div class="sensor" id="light-sensor">
+                        <h3>Light Sensor</h3>
                         <p><strong>Light Weight:</strong> Percent value representing the significance of the light sensor readings.</p>
                         <p><strong>Current Value:</strong> 0.02</p>
                         <p><strong>Light Max Value:</strong> The maximum value that can be stored for the light sensor.</p>
@@ -139,17 +104,41 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-
-    <!-- Additional JavaScript for Sensor Dropdown functionality -->
+    
+    <!-- Additional JavaScript for Carousel functionality -->
     <script>
-        function toggleSensorInfo(sensorId) {
-            var sensorInfo = document.getElementById(sensorId + '-info');
-            if (sensorInfo.style.display === "block") {
-                sensorInfo.style.display = "none";
-            } else {
-                sensorInfo.style.display = "block";
-            }
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            var carousel = document.querySelector(".carousel-content");
+            var sensors = document.querySelectorAll(".sensor");
+            var currentIndex = 0;
+        
+            document.querySelector(".prev").addEventListener("click", function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    carousel.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                }
+            });
+            // Add next button functionality
+            document.addEventListener("DOMContentLoaded", function() {
+            var carousel = document.querySelector(".carousel-content");
+            var sensors = document.querySelectorAll(".sensor");
+            var currentIndex = 0;
+        
+            document.querySelector(".prev").addEventListener("click", function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    carousel.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                }
+            });
+        
+            document.querySelector(".next").addEventListener("click", function() {
+                if (currentIndex < sensors.length - 1) {
+                    currentIndex++;
+                    carousel.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                }
+            });
+        });
+        });
     </script>
 </body>
 </html>
