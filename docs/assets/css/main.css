@@ -3914,3 +3914,10 @@ input, select, textarea {
     padding-bottom: 10px; /* Add some spacing between parameters */
     margin-bottom: 10px; /* Add margin between parameters */
 }
+
+/* Add a line between sensor elements */
+.sensor {
+    border-bottom: 1px solid #ccc; /* Add a bottom border */
+    padding-bottom: 20px; /* Add some spacing between sensors */
+    margin-bottom: 20px; /* Add margin between sensors */
+}
