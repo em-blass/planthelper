@@ -37,79 +37,55 @@
                 <!-- Sensor Content -->
                 <!-- Dirt Moisture Sensor -->
                 <div class="sensor">
-                    <h3 id="dirt-moisture-sensor-title">Dirt Moisture Sensor</h3>
+                    <h3 onclick="toggleSensorInfo('dirt-moisture-sensor')">Dirt Moisture Sensor</h3>
                     <div class="sensor-info" id="dirt-moisture-sensor-info">
                         <p><strong>Dirt Weight:</strong> Percent value representing the significance of the dirt moisture sensor readings.</p>
-                        <p><strong>Current Value:</strong> <span id="dirt-moisture-current-value">0.08</span></p>
+                        <p><strong>Current Value:</strong> 0.08</p>
                         <p><strong>Dirt Max Value:</strong> The maximum value that can be stored for the dirt moisture sensor.</p>
-                        <p><strong>Max Value:</strong> <span id="dirt-moisture-max-value">8000</span></p>
+                        <p><strong>Current Value:</strong> 8000</p>
                         <p><strong>Dirt Min Value:</strong> The minimum value that can be stored for the dirt moisture sensor.</p>
-                        <p><strong>Min Value:</strong> <span id="dirt-moisture-min-value">80</span></p>
+                        <p><strong>Current Value:</strong> 80</p>
                         <p><strong>Emergency Minimum Value:</strong> If the dirt moisture sensor reads below the emergency minimum value, watering is forced to begin.</p>
-                        <p><strong>Emergency Value:</strong> <span id="dirt-moisture-emergency-value">9</span></p>
-                    </div>
-                    <!-- User Input Section -->
-                    <div class="user-input">
-                        <label for="dirt-moisture-adjustment">Adjust Value:</label>
-                        <input type="number" id="dirt-moisture-adjustment" step="0.01">
-                        <button onclick="adjustSensorValue('dirt-moisture')">Apply</button>
+                        <p><strong>Current Value:</strong> 9</p>
                     </div>
                 </div>
-        
+
                 <!-- Temperature Sensor -->
                 <div class="sensor">
-                    <h3 id="temperature-sensor-title">Temperature Sensor</h3>
+                    <h3 onclick="toggleSensorInfo('temperature-sensor')">Temperature Sensor</h3>
                     <div class="sensor-info" id="temperature-sensor-info">
                         <p><strong>Temperature Weight:</strong> Percent value representing the significance of the temperature sensor readings.</p>
-                        <p><strong>Current Value:</strong> <span id="temperature-current-value">0.06</span></p>
+                        <p><strong>Current Value:</strong> 0.06</p>
                         <p><strong>Temperature Max Value:</strong> The maximum value that can be stored for the temperature sensor.</p>
-                        <p><strong>Max Value:</strong> <span id="temperature-max-value">6500</span></p>
+                        <p><strong>Current Value:</strong> 6500</p>
                         <p><strong>Temperature Min Value:</strong> The minimum value that can be stored for the temperature sensor.</p>
-                        <p><strong>Min Value:</strong> <span id="temperature-min-value">65</span></p>
-                    </div>
-                    <!-- User Input Section -->
-                    <div class="user-input">
-                        <label for="temperature-adjustment">Adjust Value:</label>
-                        <input type="number" id="temperature-adjustment" step="0.01">
-                        <button onclick="adjustSensorValue('temperature')">Apply</button>
+                        <p><strong>Current Value:</strong> 65</p>
                     </div>
                 </div>
-        
+
                 <!-- Humidity Sensor -->
                 <div class="sensor">
-                    <h3 id="humidity-sensor-title">Humidity Sensor</h3>
+                    <h3 onclick="toggleSensorInfo('humidity-sensor')">Humidity Sensor</h3>
                     <div class="sensor-info" id="humidity-sensor-info">
                         <p><strong>Humidity Weight:</strong> Percent value representing the significance of the humidity sensor readings.</p>
-                        <p><strong>Current Value:</strong> <span id="humidity-current-value">0.04</span></p>
+                        <p><strong>Current Value:</strong> 0.04</p>
                         <p><strong>Humidity Max Value:</strong> The maximum value that can be stored for the humidity sensor.</p>
-                        <p><strong>Max Value:</strong> <span id="humidity-max-value">4000</span></p>
+                        <p><strong>Current Value:</strong> 4000</p>
                         <p><strong>Humidity Min Value:</strong> The minimum value that can be stored for the humidity sensor.</p>
-                        <p><strong>Min Value:</strong> <span id="humidity-min-value">40</span></p>
-                    </div>
-                    <!-- User Input Section -->
-                    <div class="user-input">
-                        <label for="humidity-adjustment">Adjust Value:</label>
-                        <input type="number" id="humidity-adjustment" step="0.01">
-                        <button onclick="adjustSensorValue('humidity')">Apply</button>
+                        <p><strong>Current Value:</strong> 40</p>
                     </div>
                 </div>
-        
+
                 <!-- Light Sensor -->
                 <div class="sensor">
-                    <h3 id="light-sensor-title">Light Sensor</h3>
+                    <h3 onclick="toggleSensorInfo('light-sensor')">Light Sensor</h3>
                     <div class="sensor-info" id="light-sensor-info">
                         <p><strong>Light Weight:</strong> Percent value representing the significance of the light sensor readings.</p>
-                        <p><strong>Current Value:</strong> <span id="light-current-value">0.02</span></p>
+                        <p><strong>Current Value:</strong> 0.02</p>
                         <p><strong>Light Max Value:</strong> The maximum value that can be stored for the light sensor.</p>
-                        <p><strong>Max Value:</strong> <span id="light-max-value">2000</span></p>
+                        <p><strong>Current Value:</strong> 2000</p>
                         <p><strong>Light Min Value:</strong> The minimum value that can be stored for the light sensor.</p>
-                        <p><strong>Min Value:</strong> <span id="light-min-value">20</span></p>
-                    </div>
-                    <!-- User Input Section -->
-                    <div class="user-input">
-                        <label for="light-adjustment">Adjust Value:</label>
-                        <input type="number" id="light-adjustment" step="0.01">
-                        <button onclick="adjustSensorValue('light')">Apply</button>
+                        <p><strong>Current Value:</strong> 20</p>
                     </div>
                 </div>
             </div>
