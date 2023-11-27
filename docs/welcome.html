@@ -119,12 +119,25 @@
                 }
             });
             // Add next button functionality
+            document.addEventListener("DOMContentLoaded", function() {
+            var carousel = document.querySelector(".carousel-content");
+            var sensors = document.querySelectorAll(".sensor");
+            var currentIndex = 0;
+        
+            document.querySelector(".prev").addEventListener("click", function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    carousel.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                }
+            });
+        
             document.querySelector(".next").addEventListener("click", function() {
                 if (currentIndex < sensors.length - 1) {
                     currentIndex++;
                     carousel.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
                 }
             });
+        });
         });
     </script>
 </body>
