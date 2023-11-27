@@ -86,9 +86,18 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    
     <!-- Additional JavaScript for Carousel functionality -->
     <script>
-        // Carousel functionality script here
+        document.addEventListener("DOMContentLoaded", function() {
+            var carousel = document.querySelector(".carousel-content");
+            var sensors = document.querySelectorAll(".sensor");
+            var currentIndex = 0;
+        
+            document.querySelector(".prev").addEventListener("click", function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    carousel.style.transform = 'translate
     </script>
 </body>
 </html>
