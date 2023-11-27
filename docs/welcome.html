@@ -1,64 +1,83 @@
 <!DOCTYPE HTML>
-<html>
-    <head>
-        <title>Terminal</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    </head>
-    <body class="is-preload">
+<html lang="en">
+<head>
+    <!-- Metadata and CSS references -->
+    <title>Automated Plant Caretaker - Sensor Management</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Sensor management interface for Automated Plant Caretaker." />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-        <!-- Sidebar -->
-        <section id="sidebar">
+    <!-- AWS SDK and JavaScript functions -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
+    <script>
+        // JavaScript functions from vars.html
+        // (Insert the JavaScript code from vars.html here)
+    </script>
+</head>
+<body class="is-preload" onload="loadVals()">
+
+    <!-- Sidebar from index.html -->
+    <section id="sidebar">
+        <!-- Sidebar content -->
+        <!-- ... -->
+    </section>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sensor Management Content (Adapted from vars.html) -->
+        <section class="wrapper style2">
             <div class="inner">
-                <nav>
-                    <ul>
-                        <li><a href="index.html#intro">Home</a></li>
-                        <li><a href="index.html#one">About The Project</a></li>
-                        <li><a href="index.html#two">Features</a></li>
-                        <li><a href="index.html#three">Contact Us</a></li>
-                        <li><a href="index.html">Logout</a></li>
-                    </ul>
-                </nav>
+                <!-- Dirt Moisture Sensor -->
+                <h1>Dirt Moisture Sensor</h1>
+                <!-- Forms for Dirt Moisture Sensor -->
+                <!-- ... -->
+                
+                <hr>
+
+                <!-- Temperature Sensor -->
+                <h1>Temperature Sensor</h1>
+                <!-- Forms for Temperature Sensor -->
+                <!-- ... -->
+                
+                <hr>
+
+                <!-- Humidity Sensor -->
+                <h1>Humidity Sensor</h1>
+                <!-- Forms for Humidity Sensor -->
+                <!-- ... -->
+
+                <hr>
+
+                <!-- Light Sensor -->
+                <h1>Light Sensor</h1>
+                <!-- Forms for Light Sensor -->
+                <!-- ... -->
             </div>
         </section>
 
-        <!-- Wrapper -->
-        <div id="wrapper">
+    </div>
 
-            <!-- Main Content Area -->
-            <section id="intro" class="wrapper style1 fullscreen fade-up">
-                <div class="inner">
-                    <h1>Terminal:</h1>
-
-                    <!-- Room for AWS Terminal Integration -->
-                    <div id="aws-terminal-container">
-                        <!-- AWS Terminal will be integrated here later -->
-                    </div>
-                </div>
-            </section>
-
+    <!-- Footer from index.html -->
+    <footer id="footer" class="wrapper style1-alt">
+        <div class="inner">
+            <ul class="menu">
+                <li>&copy; Automated Plant Caretaker. All rights reserved.</li>
+            </ul>
         </div>
+    </footer>
 
-        <!-- Footer -->
-        <footer id="footer" class="wrapper style1-alt">
-            <div class="inner">
-                <ul class="menu">
-                    <li>&copy; Automated Plant Caretaker. All rights reserved.</li>
-                </ul>
-            </div>
-        </footer>
+    <!-- Scripts from index.html -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
-
-    </body>
+</body>
 </html>
