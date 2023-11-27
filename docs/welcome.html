@@ -119,7 +119,12 @@
                 }
             });
             // Add next button functionality
-            // ...
+            document.querySelector(".next").addEventListener("click", function() {
+                if (currentIndex < sensors.length - 1) {
+                    currentIndex++;
+                    carousel.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                }
+            });
         });
     </script>
 </body>
