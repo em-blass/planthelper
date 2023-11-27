@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="Sensor management interface for Automated Plant Caretaker." />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
     <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
-<body>
+<body class="is-preload" onload="loadVals()">
 
     <!-- Sidebar -->
     <section id="sidebar">
@@ -24,30 +23,53 @@
         </div>
     </section>
 
-    <!-- Navigation Buttons -->
-    <div class="sensor-navigation">
-        <button onclick="navigateToSensor(0)">Dirt Moisture Sensor</button>
-        <button onclick="navigateToSensor(1)">Temperature Sensor</button>
-        <button onclick="navigateToSensor(2)">Humidity Sensor</button>
-        <button onclick="navigateToSensor(3)">Light Sensor</button>
-    </div>
-
     <!-- Wrapper -->
     <div id="wrapper">
+
         <!-- Sensor Management Carousel -->
         <section class="wrapper style2">
-            <div class="inner">
-                <div id="sensorCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                        <!-- Sensor Sections Here -->
+            <div class="inner sensor-carousel">
+                <!-- Carousel Navigation -->
+                <div class="carousel-nav">
+                    <button class="prev">Prev</button>
+                    <button class="next">Next</button>
+                </div>
+
+                <!-- Carousel Content -->
+                <div class="carousel-content">
+                    <!-- Dirt Moisture Sensor -->
+                    <div class="sensor" id="dirt-moisture-sensor">
+                        <h3>Dirt Moisture Sensor</h3>
+                        <!-- Forms for Dirt Moisture Sensor -->
+                        <!-- ... -->
+                    </div>
+
+                    <!-- Temperature Sensor -->
+                    <div class="sensor" id="temperature-sensor">
+                        <h3>Temperature Sensor</h3>
+                        <!-- Forms for Temperature Sensor -->
+                        <!-- ... -->
+                    </div>
+
+                    <!-- Humidity Sensor -->
+                    <div class="sensor" id="humidity-sensor">
+                        <h3>Humidity Sensor</h3>
+                        <!-- Forms for Humidity Sensor -->
+                        <!-- ... -->
+                    </div>
+
+                    <!-- Light Sensor -->
+                    <div class="sensor" id="light-sensor">
+                        <h3>Light Sensor</h3>
+                        <!-- Forms for Light Sensor -->
+                        <!-- ... -->
                     </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer from index.html -->
     <footer id="footer" class="wrapper style1-alt">
         <div class="inner">
             <ul class="menu">
@@ -56,13 +78,26 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Scripts from index.html -->
     <script src="assets/js/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!-- Bootstrap JavaScript -->
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Additional JavaScript for Carousel functionality -->
     <script>
-        function navigateToSensor(index) {
-            $('#sensorCarousel').carousel(index);
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            var carousel = document.querySelector(".carousel-content");
+            var sensors = document.querySelectorAll(".sensor");
+            var currentIndex = 0;
+        
+            document.querySelector(".prev").addEventListener("click", function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    carousel.style.transform = 'translate
     </script>
 </body>
 </html>
