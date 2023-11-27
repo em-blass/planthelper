@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Welcome to Hyperspace</title>
+    <title>Plant Helper Terminal</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -11,10 +11,10 @@
 
 <!-- Header -->
 <header id="header">
-    <a href="index.html" class="title">Hyperspace</a>
+    <a href="index.html" class="title">Plant Helper Terminal</a>
     <nav>
         <ul>
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="generic.html">Generic</a></li>
             <li><a href="elements.html">Elements</a></li>
         </ul>
@@ -27,44 +27,60 @@
     <!-- Main -->
     <section id="main" class="wrapper">
         <div class="inner">
-            <h1 class="major">Welcome to Hyperspace</h1>
+            <h1 class="major">Plant Helper Terminal</h1>
 
-            <!-- Text -->
+            <!-- Terminal Interface -->
             <section>
-                <h2>About Us</h2>
-                <p>Welcome to Hyperspace, your gateway to the future of web development. We are dedicated to creating stunning and user-friendly websites for both personal and commercial use. Our mission is to provide you with the tools and knowledge to make your online presence shine.</p>
-                <p>Whether you're a seasoned developer or just starting, we have something for you. Explore our range of web elements, design resources, and more to supercharge your projects.</p>
+                <h2>Welcome to the Plant Helper Terminal</h2>
+                <p>This terminal allows you to interact with the Plant Helper system, which monitors and assists in taking care of your plants.</p>
+                <p>Use the commands below to view and manage the settings of the Plant Helper:</p>
+                <pre>
+                    <code>
+Dirt Moisture Sensor:
+  - Current Value: 0.08
+  - Max Value: 8000
+  - Min Value: 80
+  - Emergency Minimum Value: 9
+
+Temperature Sensor:
+  - Current Value: 0.06
+  - Max Value: 6500
+  - Min Value: 65
+
+Humidity Sensor:
+  - Current Value: 0.04
+  - Max Value: 4000
+  - Min Value: 40
+
+Light Sensor:
+  - Current Value: 0.02
+  - Max Value: 2000
+  - Min Value: 20
+
+Commands:
+- View settings: view [sensor name] settings
+- Update settings: update [sensor name] [parameter] [value]
+- Start watering: start watering
+- Stop watering: stop watering
+                    </code>
+                </pre>
             </section>
 
-            <!-- Features -->
+            <!-- User Input -->
             <section>
-                <h2>Key Features</h2>
-                <div class="features">
-                    <div class="feature">
-                        <span class="icon solid fa-globe"></span>
-                        <h3>Global Reach</h3>
-                        <p>Expand your online reach with our versatile and customizable web elements.</p>
+                <h2>Enter a Command:</h2>
+                <form method="post" action="#">
+                    <div class="row gtr-uniform">
+                        <div class="col-12">
+                            <input type="text" name="command" id="command" value="" placeholder="Enter your command..." />
+                        </div>
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="submit" value="Submit" class="primary" /></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="feature">
-                        <span class="icon solid fa-cogs"></span>
-                        <h3>Easy Integration</h3>
-                        <p>Seamlessly integrate our elements into your projects with simple code snippets.</p>
-                    </div>
-                    <div class="feature">
-                        <span class="icon solid fa-lightbulb"></span>
-                        <h3>Creative Solutions</h3>
-                        <p>Unlock your creativity and bring your web design ideas to life.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Call to Action -->
-            <section>
-                <h2>Get Started</h2>
-                <p>Ready to embark on your web development journey? Explore our elements, check out our resources, and start building amazing websites today!</p>
-                <ul class="actions">
-                    <li><a href="elements.html" class="button primary">Explore Elements</a></li>
-                </ul>
+                </form>
             </section>
         </div>
     </section>
