@@ -139,16 +139,25 @@ Commands:
     
             const userInput = commandInput.value.trim();
             if (userInput) {
-                // Append user input to the terminal
-                appendToTerminal(`User: ${userInput}`);
+                // Parse the user input
+                const [command, sensorName] = userInput.split(" ");
     
-                // TODO: Send the user input to the server for processing and receive a response
+                if (command.toLowerCase() === "view" && sensorName.toLowerCase() === "settings") {
+                    // Assuming you have a list of valid sensor names
+                    const validSensorNames = ["Dirt", "Temperature", "Humidity", "Light"];
     
-                // For demonstration purposes, let's assume you have a response from the server:
-                const serverResponse = "System: This is a sample response.";
-    
-                // Append the server response to the terminal
-                appendToTerminal(serverResponse);
+                    if (validSensorNames.includes(sensorName)) {
+                        // Sensor found, display its settings (replace with your logic)
+                        const sensorSettings = `Settings for ${sensorName}:\n - Current Value: [Current Value]\n - Max Value: [Max Value]\n - Min Value: [Min Value]`;
+                        appendToTerminal(sensorSettings);
+                    } else {
+                        // Sensor not found
+                        appendToTerminal("System: Sensor not found!");
+                    }
+                } else {
+                    // Invalid command
+                    appendToTerminal("System: Invalid command.");
+                }
     
                 // Clear the input field
                 commandInput.value = "";
