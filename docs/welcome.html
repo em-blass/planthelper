@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="Sensor management interface for Automated Plant Caretaker." />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
     <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
-<body class="is-preload" onload="loadVals()">
+<body>
 
     <!-- Sidebar -->
     <section id="sidebar">
@@ -25,51 +26,61 @@
 
     <!-- Wrapper -->
     <div id="wrapper">
-
         <!-- Sensor Management Carousel -->
         <section class="wrapper style2">
-            <div class="inner sensor-carousel">
-                <!-- Carousel Navigation -->
-                <div class="carousel-nav">
-                    <button class="prev">Prev</button>
-                    <button class="next">Next</button>
-                </div>
+            <div class="inner">
+                <div id="sensorCarousel" class="carousel slide" data-ride="carousel">
 
-                <!-- Carousel Content -->
-                <div class="carousel-content">
-                    <!-- Dirt Moisture Sensor -->
-                    <div class="sensor" id="dirt-moisture-sensor">
-                        <h3>Dirt Moisture Sensor</h3>
-                        <!-- Forms for Dirt Moisture Sensor -->
-                        <!-- ... -->
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#sensorCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#sensorCarousel" data-slide-to="1"></li>
+                        <li data-target="#sensorCarousel" data-slide-to="2"></li>
+                        <li data-target="#sensorCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <h3>Dirt Moisture Sensor</h3>
+                            <!-- Forms for Dirt Moisture Sensor -->
+                            <!-- ... -->
+                        </div>
+
+                        <div class="item">
+                            <h3>Temperature Sensor</h3>
+                            <!-- Forms for Temperature Sensor -->
+                            <!-- ... -->
+                        </div>
+
+                        <div class="item">
+                            <h3>Humidity Sensor</h3>
+                            <!-- Forms for Humidity Sensor -->
+                            <!-- ... -->
+                        </div>
+
+                        <div class="item">
+                            <h3>Light Sensor</h3>
+                            <!-- Forms for Light Sensor -->
+                            <!-- ... -->
+                        </div>
                     </div>
 
-                    <!-- Temperature Sensor -->
-                    <div class="sensor" id="temperature-sensor">
-                        <h3>Temperature Sensor</h3>
-                        <!-- Forms for Temperature Sensor -->
-                        <!-- ... -->
-                    </div>
-
-                    <!-- Humidity Sensor -->
-                    <div class="sensor" id="humidity-sensor">
-                        <h3>Humidity Sensor</h3>
-                        <!-- Forms for Humidity Sensor -->
-                        <!-- ... -->
-                    </div>
-
-                    <!-- Light Sensor -->
-                    <div class="sensor" id="light-sensor">
-                        <h3>Light Sensor</h3>
-                        <!-- Forms for Light Sensor -->
-                        <!-- ... -->
-                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#sensorCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#sensorCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- Footer from index.html -->
+    <!-- Footer -->
     <footer id="footer" class="wrapper style1-alt">
         <div class="inner">
             <ul class="menu">
@@ -78,26 +89,8 @@
         </div>
     </footer>
 
-    <!-- Scripts from index.html -->
+    <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    
-    <!-- Additional JavaScript for Carousel functionality -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var carousel = document.querySelector(".carousel-content");
-            var sensors = document.querySelectorAll(".sensor");
-            var currentIndex = 0;
-        
-            document.querySelector(".prev").addEventListener("click", function() {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    carousel.style.transform = 'translate
-    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!-- Bootstrap JavaScript -->
 </body>
 </html>
