@@ -84,6 +84,14 @@ Commands:
     </section>
 </div>
 
+<!-- Terminal Output -->
+<section id="terminal-output">
+    <h2>Terminal Output:</h2>
+    <div id="terminal" class="terminal-container">
+        <!-- Output text will be displayed here -->
+    </div>
+</section>
+
 <!-- Footer -->
 <footer id="footer" class="wrapper alt">
     <div class="inner">
@@ -102,5 +110,63 @@ Commands:
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 
+<style>
+    /* Terminal Container Styles */
+    .terminal-container {
+        border: 1px solid #ccc;
+        background-color: black;
+        color: white;
+        padding: 10px;
+        height: 300px; /* Adjust the height as needed */
+        overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    }
+
+    /* Terminal Text Styles */
+    .terminal-text {
+        font-family: "Courier New", Courier, monospace;
+        white-space: pre-line;
+    }
+</style>
+
+<script>
+    // JavaScript code to handle user input and display responses
+    document.addEventListener("DOMContentLoaded", function () {
+        const commandForm = document.querySelector("form");
+        const commandInput = document.getElementById("command");
+        const terminalOutput = document.getElementById("terminal");
+    
+        commandForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            const userInput = commandInput.value.trim();
+            if (userInput) {
+                // Append user input to the terminal
+                appendToTerminal(`User: ${userInput}`);
+    
+                // TODO: Send the user input to the server for processing and receive a response
+    
+                // For demonstration purposes, let's assume you have a response from the server:
+                const serverResponse = "System: This is a sample response.";
+    
+                // Append the server response to the terminal
+                appendToTerminal(serverResponse);
+    
+                // Clear the input field
+                commandInput.value = "";
+            }
+        });
+    
+        function appendToTerminal(text) {
+            const newLine = document.createElement("div");
+            newLine.className = "terminal-text";
+            newLine.textContent = text;
+            terminalOutput.appendChild(newLine);
+    
+            // Scroll to the bottom of the terminal
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+    });
+</script>
+    
 </body>
 </html>
