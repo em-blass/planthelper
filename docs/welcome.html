@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <!-- Metadata and CSS references -->
     <title>Automated Plant Caretaker - Sensor Management</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -31,108 +30,8 @@
     <!-- Wrapper -->
     <div id="wrapper">
 
-        <!-- Sensor Management -->
-        <section class="wrapper style2">
-            <div class="inner sensor-carousel">
-                <!-- Sensor Content -->
-                <!-- Dirt Moisture Sensor -->
-                <div class="sensor">
-                    <h3 onclick="toggleSensorInfo('dirt-moisture-sensor')">Dirt Moisture Sensor</h3>
-                    <div class="sensor-info" id="dirt-moisture-sensor-info">
-                        <div class="sensor-parameter">
-                            <p><strong>Dirt Weight:</strong> Percent value representing the significance of the dirt moisture sensor readings.</p>
-                            <p><strong>Current Value:</strong> 0.08</p>
-                            <div class="parameter-input">
-                                <input type="text" class="value-textbox" placeholder="">
-                                <button onclick="changeValue()">Change Value</button>
-                            </div>
-                        </div>
-                        <div class="sensor-parameter">
-                            <p><strong>Dirt Max Value:</strong> The maximum value that can be stored for the dirt moisture sensor.</p>
-                            <p><strong>Current Value:</strong> 8000</p>
-                            <div class="parameter-input">
-                                <input type="text" class="value-textbox" placeholder="">
-                                <button onclick="changeValue()">Change Value</button>
-                            </div>
-                        </div>
-                        <div class="sensor-parameter">
-                            <p><strong>Dirt Min Value:</strong> The minimum value that can be stored for the dirt moisture sensor.</p>
-                            <p><strong>Current Value:</strong> 80</p>
-                            <div class="parameter-input">
-                                <input type="text" class="value-textbox" placeholder="">
-                                <button onclick="changeValue()">Change Value</button>
-                            </div>
-                        </div>
-                        <div class="sensor-parameter">
-                            <p><strong>Emergency Minimum Value:</strong> If the dirt moisture sensor reads below the emergency minimum value, watering is forced to begin.</p>
-                            <p><strong>Current Value:</strong> 9</p>
-                            <div class="parameter-input">
-                                <input type="text" class="value-textbox" placeholder="">
-                                <button onclick="changeValue()">Change Value</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Temperature Sensor -->
-                <div class="sensor">
-                    <h3 onclick="toggleSensorInfo('temperature-sensor')">Temperature Sensor</h3>
-                    <div class="sensor-info" id="temperature-sensor-info">
-                        <p><strong>Temperature Weight:</strong> Percent value representing the significance of the temperature sensor readings.</p>
-                        <p><strong>Current Value:</strong> 0.06</p>
-                        <input type="text" id="value-textbox" placeholder="">
-                        <button onclick="changeValue()">Change Value</button>
-                        
-                        <p><strong>Temperature Max Value:</strong> The maximum value that can be stored for the temperature sensor.</p>
-                        <p><strong>Current Value:</strong> 6500</p>
-                        <input type="text" id="value-textbox" placeholder="">
-                        <button onclick="changeValue()">Change Value</button>
-                        
-                        <p><strong>Temperature Min Value:</strong> The minimum value that can be stored for the temperature sensor.</p>
-                        <p><strong>Current Value:</strong> 65</p>
-                        <input type="text" id="value-textbox" placeholder="">
-                        <button onclick="changeValue()">Change Value</button>
-                    </div>
-                </div>
-
-                <!-- Humidity Sensor -->
-                <div class="sensor">
-                    <h3 onclick="toggleSensorInfo('humidity-sensor')">Humidity Sensor</h3>
-                    <div class="sensor-info" id="humidity-sensor-info">
-                        <p><strong>Humidity Weight:</strong> Percent value representing the significance of the humidity sensor readings.</p>
-                        <p><strong>Current Value:</strong> 0.04</p>
-                        <p><strong>Humidity Max Value:</strong> The maximum value that can be stored for the humidity sensor.</p>
-                        <p><strong>Current Value:</strong> 4000</p>
-                        <p><strong>Humidity Min Value:</strong> The minimum value that can be stored for the humidity sensor.</p>
-                        <p><strong>Current Value:</strong> 40</p>
-                    </div>
-                </div>
-
-                <!-- Light Sensor -->
-                <div class="sensor">
-                    <h3 onclick="toggleSensorInfo('light-sensor')">Light Sensor</h3>
-                    <div class="sensor-info" id="light-sensor-info">
-                        <p><strong>Light Weight:</strong> Percent value representing the significance of the light sensor readings.</p>
-                        <p><strong>Current Value:</strong> 0.02</p>
-                        <input type="text" id="value-textbox" placeholder="">
-                        <button onclick="changeValue()">Change Value</button>
-                        
-                        <p><strong>Light Max Value:</strong> The maximum value that can be stored for the light sensor.</p>
-                        <p><strong>Current Value:</strong> 2000</p>
-                        <input type="text" id="value-textbox" placeholder="">
-                        <button onclick="changeValue()">Change Value</button>
-                        
-                        <p><strong>Light Min Value:</strong> The minimum value that can be stored for the light sensor.</p>
-                        <p><strong>Current Value:</strong> 20</p>
-                        <input type="text" id="value-textbox" placeholder="">
-                        <button onclick="changeValue()">Change Value</button>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
 
-    <!-- Footer from index.html -->
     <footer id="footer" class="wrapper style1-alt">
         <div class="inner">
             <ul class="menu">
@@ -141,7 +40,6 @@
         </div>
     </footer>
 
-    <!-- Scripts from index.html -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -150,7 +48,7 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Additional JavaScript for Sensor Dropdown functionality -->
+    <!-- Sensor Dropdown functionality -->
     <script>
         function toggleSensorInfo(sensorId) {
             var sensorInfo = document.getElementById(sensorId + '-info');
