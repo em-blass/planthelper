@@ -9,13 +9,6 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
-    <!-- AWS SDK and JavaScript functions -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
-    <script>
-        // JavaScript functions from vars.html
-        // (Insert the JavaScript code from vars.html here)
-    </script>
 </head>
 <body class="is-preload" onload="loadVals()">
 
@@ -33,37 +26,47 @@
     <!-- Wrapper -->
     <div id="wrapper">
 
-        <!-- Sensor Management Content (Adapted from vars.html) -->
+        <!-- Sensor Management Carousel -->
         <section class="wrapper style2">
-            <div class="inner">
-                <!-- Dirt Moisture Sensor -->
-                <h1>Dirt Moisture Sensor</h1>
-                <!-- Forms for Dirt Moisture Sensor -->
-                <!-- ... -->
-                
-                <hr>
+            <div class="inner sensor-carousel">
+                <!-- Carousel Navigation -->
+                <div class="carousel-nav">
+                    <button class="prev">Prev</button>
+                    <button class="next">Next</button>
+                </div>
 
-                <!-- Temperature Sensor -->
-                <h1>Temperature Sensor</h1>
-                <!-- Forms for Temperature Sensor -->
-                <!-- ... -->
-                
-                <hr>
+                <!-- Carousel Content -->
+                <div class="carousel-content">
+                    <!-- Dirt Moisture Sensor -->
+                    <div class="sensor" id="dirt-moisture-sensor">
+                        <h3>Dirt Moisture Sensor</h3>
+                        <!-- Forms for Dirt Moisture Sensor -->
+                        <!-- ... -->
+                    </div>
 
-                <!-- Humidity Sensor -->
-                <h1>Humidity Sensor</h1>
-                <!-- Forms for Humidity Sensor -->
-                <!-- ... -->
+                    <!-- Temperature Sensor -->
+                    <div class="sensor" id="temperature-sensor">
+                        <h3>Temperature Sensor</h3>
+                        <!-- Forms for Temperature Sensor -->
+                        <!-- ... -->
+                    </div>
 
-                <hr>
+                    <!-- Humidity Sensor -->
+                    <div class="sensor" id="humidity-sensor">
+                        <h3>Humidity Sensor</h3>
+                        <!-- Forms for Humidity Sensor -->
+                        <!-- ... -->
+                    </div>
 
-                <!-- Light Sensor -->
-                <h1>Light Sensor</h1>
-                <!-- Forms for Light Sensor -->
-                <!-- ... -->
+                    <!-- Light Sensor -->
+                    <div class="sensor" id="light-sensor">
+                        <h3>Light Sensor</h3>
+                        <!-- Forms for Light Sensor -->
+                        <!-- ... -->
+                    </div>
+                </div>
             </div>
         </section>
-
     </div>
 
     <!-- Footer from index.html -->
@@ -83,6 +86,9 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-
+    <!-- Additional JavaScript for Carousel functionality -->
+    <script>
+        // Carousel functionality script here
+    </script>
 </body>
 </html>
