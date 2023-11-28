@@ -8,6 +8,7 @@
     <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
+    
 <body class="is-preload">
 
 <header id="header">
@@ -24,39 +25,34 @@
     <section id="main" class="wrapper">
         <div class="inner">
             <h1 class="major">Plant Helper Terminal</h1>
-
             <section>
                 <h2>Welcome to the Plant Helper Terminal</h2>
                 <p>This terminal allows you to interact with the Plant Helper system, which monitors and assists in taking care of your plants. Use the commands below to view and manage the settings of the Plant Helper:</p>
-</div>
-
-<section id="terminal-output">
-    <div id="terminal" class="terminal-container">
-    </div>
-</section>
-
-<section class="section-enter-command">
-    <form method="post" action="#">
-        <div class="row gtr-uniform">
-            <center><div class="col-12">
-                <input type="text" name="command" id="command" value="" placeholder="Press Enter to submit..." />
-            </div></center>
-            <div class="col-12">
-            </div>
+            </section>
         </div>
-    </form>
-</section>
 
-<div id="wrapper">
-<pre>
-    <code>
-        
+        <section id="terminal-output">
+            <div id="terminal" class="terminal-container"></div>
+        </section>
+
+        <section class="section-enter-command">
+            <form method="post" action="#">
+                <div class="row gtr-uniform">
+                    <div class="col-12" style="text-align: center;">
+                        <input type="text" name="command" id="command" value="" placeholder="Press Enter to submit..." />
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <pre>
+            <code>
 Sensors:
     - Dirt Moisture: dirtMoisture
     - Temperature: temp
     - Humidity: humidity
     - Light: light
-                        
+                
 Parameters:
     - Weight: weight
     - Max Value: maxVal
@@ -69,10 +65,9 @@ Commands:
     - Start watering: start watering
     - Stop watering: stop watering
     - Clear terminal: clear
-                        
-                    </code>
-                </pre>
-            </section>
+                </code>
+            </pre>
+    </section>
 </div>
 
 <footer id="footer" class="wrapper alt">
@@ -202,6 +197,5 @@ Commands:
         }
     });
 </script>
-    
 </body>
 </html>
