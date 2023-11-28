@@ -3908,41 +3908,36 @@ input, select, textarea {
 
 		}
 
-/* Add borders between sensor parameters */
 .sensor-parameter {
-    border-bottom: 1px solid #ccc; /* Add a bottom border */
-    padding-bottom: 10px; /* Add some spacing between parameters */
-    margin-bottom: 10px; /* Add margin between parameters */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
-/* Add a line between sensor elements */
 .sensor {
-    border-bottom: 1px solid #ccc; /* Add a bottom border */
-    padding-bottom: 20px; /* Add some spacing between sensors */
-    margin-bottom: 20px; /* Add margin between sensors */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
-/* Style for parameter input container */
 .parameter-input {
     display: flex;
-    align-items: center; /* Align items vertically in the center */
-    gap: 10px; /* Add some space between input and button */
+    align-items: center;
+    gap: 10px;
 }
 
-/* Style for the text box */
 .value-textbox {
-    width: 100px; /* Adjust the width as needed */
+    width: 100px;
 }
 
-/* Style for the button */
 .parameter-input button {
-    background-color: #007bff; /* Customize the button background color */
-    color: #fff; /* Customize the button text color */
+    background-color: #007bff;
+    color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
 }
 
 .parameter-input button:hover {
-    background-color: #0056b3; /* Change the background color on hover */
+    background-color: #0056b3;
 }
