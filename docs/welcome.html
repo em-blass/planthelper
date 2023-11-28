@@ -133,43 +133,64 @@ Commands:
         const commandForm = document.querySelector("form");
         const commandInput = document.getElementById("command");
         const terminalOutput = document.getElementById("terminal");
-    
+
         commandForm.addEventListener("submit", function (event) {
             event.preventDefault();
-    
+
             const userInput = commandInput.value.trim();
             if (userInput) {
-                // Parse the user input
-                const [command, sensorName] = userInput.split(" ");
-    
-                if (command.toLowerCase() === "view" && sensorName.toLowerCase() === "settings") {
-                    // Assuming you have a list of valid sensor names
-                    const validSensorNames = ["Dirt", "Temperature", "Humidity", "Light"];
-    
-                    if (validSensorNames.includes(sensorName)) {
-                        // Sensor found, display its settings (replace with your logic)
-                        const sensorSettings = `Settings for ${sensorName}:\n - Current Value: [Current Value]\n - Max Value: [Max Value]\n - Min Value: [Min Value]`;
-                        appendToTerminal(sensorSettings);
-                    } else {
-                        // Sensor not found
-                        appendToTerminal("System: Sensor not found!");
-                    }
-                } else {
-                    // Invalid command
-                    appendToTerminal("System: Invalid command.");
+                // Split the command into parts
+                const commandParts = userInput.split(" ");
+                const command = commandParts[0].toLowerCase();
+                const sensorName = commandParts[1] ? commandParts[1].toLowerCase() : null;
+
+                switch (command) {
+                    case "view":
+                        if (sensorName && sensorName === "settings") {
+                            // Add logic to retrieve and display settings for a specific sensor
+                            appendToTerminal("Displaying settings for: " + sensorName);
+                        } else {
+                            appendToTerminal("System: Please specify a sensor name to view its settings.");
+                        }
+                        break;
+                    case "update":
+                        // Add logic to update settings for a specific sensor
+                        if (commandParts.length >= 4) {
+                            appendToTerminal("Updating " + sensorName + " settings...");
+                        } else {
+                            appendToTerminal("System: Invalid update syntax. Please specify a sensor name and parameters.");
+                        }
+                        break;
+                    case "start":
+                        if (sensorName && sensorName === "watering") {
+                            appendToTerminal("Starting watering...");
+                        } else {
+                            appendToTerminal("System: Invalid command. Did you mean 'start watering'?");
+                        }
+                        break;
+                    case "stop":
+                        if (sensorName && sensorName === "watering") {
+                            appendToTerminal("Stopping watering...");
+                        } else {
+                            appendToTerminal("System: Invalid command. Did you mean 'stop watering'?");
+                        }
+                        break;
+                    default:
+                        appendToTerminal("System: Unknown command.");
+                        break;
                 }
-    
+
                 // Clear the input field
                 commandInput.value = "";
             }
         });
-    
+
         function appendToTerminal(text) {
             const newLine = document.createElement("div");
             newLine.className = "terminal-text";
             newLine.textContent = text;
             terminalOutput.appendChild(newLine);
-    
+
             // Scroll to the bottom of the terminal
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
         }
