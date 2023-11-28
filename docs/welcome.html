@@ -121,81 +121,174 @@ Commands:
         margin-right: 10px; /* Add margin to the right (for spacing) */
     }
 </style>
-
+    
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const commandForm = document.querySelector("form");
-        const commandInput = document.getElementById("command");
-        const terminalOutput = document.getElementById("terminal");
-
-        // Define valid sensors and parameters
-        const validSensors = ["dirtmoisture", "temp", "humidity", "light"];
-        const validParameters = ["weight", "maxval", "minval", "emergencyminval"];
-
-        commandForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const userInput = commandInput.value.trim();
-            if (userInput) {
-                const commandParts = userInput.split(" ");
-                const command = commandParts[0].toLowerCase();
-                const sensorName = commandParts[1] ? commandParts[1].toLowerCase() : null;
-                const parameter = commandParts[2] ? commandParts[2].toLowerCase() : null;
-
-                switch (command) {
-                    case "view":
-                        if (sensorName && validSensors.includes(sensorName)) {
-                            appendToTerminal("Displaying settings for: " + sensorName);
-                        } else {
-                            appendToTerminal("System: Sensor not found. Please specify a valid sensor name.");
-                        }
-                        break;
-                    case "update":
-                        if (sensorName && parameter && commandParts.length >= 4 && validSensors.includes(sensorName) && validParameters.includes(parameter)) {
-                            appendToTerminal("Updating " + sensorName + " settings: " + commandParts.slice(2).join(" "));
-                        } else if (!validSensors.includes(sensorName)) {
-                            appendToTerminal("System: Sensor not found.");
-                        } else if (!validParameters.includes(parameter)) {
-                            appendToTerminal("System: Parameter not found.");
-                        } else {
-                            appendToTerminal("System: Invalid update syntax. Usage: update [sensor name] [parameter] [value]");
-                        }
-                        break;
-                    case "start":
-                        if (sensorName === "watering") {
-                            appendToTerminal("Starting watering...");
-                        } else {
-                            appendToTerminal("System: Invalid command. Did you mean 'start watering'?");
-                        }
-                        break;
-                    case "stop":
-                        if (sensorName === "watering") {
-                            appendToTerminal("Stopping watering...");
-                        } else {
-                            appendToTerminal("System: Invalid command. Did you mean 'stop watering'?");
-                        }
-                        break;
-                    case "clear":
-                        terminalOutput.innerHTML = "";
-                        break;
-                    default:
-                        appendToTerminal("System: Unknown command.");
-                        break;
+    awsConfig = {
+      region: "us-east-2",
+      accessKeyId: "AKIA5HSVJ3PMIMSZCQ76",
+      secretAccessKey: "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"
+    };
+    AWS.config.update(awsConfig);
+    client = new AWS.DynamoDB.DocumentClient();
+    
+    document.addEventListener("DOMContentLoaded", async function () {
+      const commandForm = document.querySelector("form");
+      const commandInput = document.getElementById("command");
+      const terminalOutput = document.getElementById("terminal");
+      const validSensors = ["dirtmoisture", "temp", "humidity", "light"];
+      const validParameters = ["weight", "maxval", "minval", "emergencyminval"];
+      commandForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const userInput = commandInput.value.trim();
+        if (userInput) {
+          const commandParts = userInput.split(" ");
+          const command = commandParts[0].toLowerCase();
+          const sensorName = commandParts[1] ? commandParts[1].toLowerCase() : null;
+          const parameter = commandParts[2] ? commandParts[2].toLowerCase() : null;
+          switch (command) {
+            case "view":
+              if (sensorName && validSensors.includes(sensorName)) {
+                appendToTerminal("Displaying settings for: " + sensorName);
+                viewValues(sensorName);
+              } else {
+                appendToTerminal(
+                  "System: Sensor not found. Please specify a valid sensor name."
+                );
+              }
+              break;
+            case "update":
+              if (
+                sensorName &&
+                parameter &&
+                commandParts.length >= 4 &&
+                validSensors.includes(sensorName) &&
+                validParameters.includes(parameter) &&
+                !(sensorName != "dirtmoisture" && parameter == "emergencyminval")
+              ) {
+                newValue = parseFloat(commandParts[3]);
+                console.log(newValue <= 1);
+                if (
+                  !isNaN(newValue) &&
+                  newValue >= 0 &&
+                  ((newValue <= 1 && parameter == "weight") ||
+                    parameter != "weight")
+                ) {
+                  appendToTerminal(
+                    "Updating " +
+                      sensorName +
+                      " settings: " +
+                      [parameter, newValue].join(" ")
+                  );
+                  updateVals(sensorName, parameter, newValue);
+                } else if (isNaN(newValue)) {
+                  appendToTerminal("System: Invalid Value: " + commandParts[3]);
+                } else if (!(newValue > 0)) {
+                  appendToTerminal("System: Value must be 0 or larger.");
+                } else if (
+                  !(
+                    (newValue <= 1 && parameter == "weight") ||
+                    parameter != "weight"
+                  )
+                ) {
+                  appendToTerminal(
+                    "System: Weight values must be between 0 and 1 [inclusive]."
+                  );
                 }
-
-                commandInput.value = "";
-            }
-        });
-
-        function appendToTerminal(text) {
-            const newLine = document.createElement("div");
-            newLine.className = "terminal-text";
-            newLine.textContent = text;
-            terminalOutput.appendChild(newLine);
-
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+              } else if (!validSensors.includes(sensorName)) {
+                appendToTerminal("System: Sensor not found.");
+              } else if (!validParameters.includes(parameter)) {
+                appendToTerminal("System: Parameter not found.");
+              } else if (
+                sensorName != "dirtmoisture" &&
+                parameter == "emergencyminval"
+              ) {
+                appendToTerminal(
+                  "System: " +
+                    sensorName +
+                    " does not have parameter: emergencyMinVal"
+                );
+              } else {
+                appendToTerminal(
+                  "System: Invalid update syntax. Usage: update [sensor name] [parameter] [value]"
+                );
+              }
+              break;
+            case "start":
+              if (sensorName === "watering") {
+                appendToTerminal("Starting watering...");
+                updateWaterStatus(true);
+              } else {
+                appendToTerminal(
+                  "System: Invalid command. Did you mean 'start watering'?"
+                );
+              }
+              break;
+            case "stop":
+              if (sensorName === "watering") {
+                appendToTerminal("Stopping watering...");
+                updateWaterStatus(false);
+              } else {
+                appendToTerminal(
+                  "System: Invalid command. Did you mean 'stop watering'?"
+                );
+              }
+              break;
+            default:
+              appendToTerminal("System: Unknown command.");
+              break;
+          }
+          commandInput.value = "";
         }
+      });
+    
+      function appendToTerminal(text) {
+        const newLine = document.createElement("div");
+        newLine.className = "terminal-text";
+        newLine.textContent = text;
+        terminalOutput.appendChild(newLine);
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      }
+    
+      async function viewValues(dataLabel) {
+        data = await client
+          .get({
+            TableName: "Variables",
+            Key: { label: dataLabel }
+          })
+          .promise();
+        console.log(data);
+        item = data.Item;
+        appendToTerminal("--Weight: ".concat(item.weight));
+        appendToTerminal("--Max Value: ".concat(item.maxval));
+        appendToTerminal("--Min. Value: ".concat(item.minval));
+        if (dataLabel == "dirtmoisture")
+          appendToTerminal("--Emergency Min. Value: ".concat(item.emergencyminval));
+      }
+    
+      async function updateVals(sensorName, parameter, newVal) {
+        await client
+          .update({
+            TableName: "Variables",
+            Key: { label: sensorName },
+            UpdateExpression: "set ".concat(parameter.concat(" = :val")),
+            ExpressionAttributeValues: { ":val": newVal }
+          })
+          .promise();
+        await loadVals();
+      }
+    
+      async function updateWaterStatus(newStatus) {
+        await client
+          .update({
+            TableName: "Variables",
+            Key: { label: "waterStatus" },
+            UpdateExpression: "set isWatering = :val",
+            ExpressionAttributeValues: { ":val": newStatus }
+          })
+          .promise();
+      }
     });
 </script>
+    
 </body>
 </html>
