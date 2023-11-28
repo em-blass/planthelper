@@ -31,26 +31,17 @@
                 <p>Use the commands below to view and manage the settings of the Plant Helper:</p>
                 <pre>
                     <code>
-Dirt Moisture Sensor:
-  - Current Value: 0.08
-  - Max Value: 8000
-  - Min Value: 80
-  - Emergency Minimum Value: 9
-
-Temperature Sensor:
-  - Current Value: 0.06
-  - Max Value: 6500
-  - Min Value: 65
-
-Humidity Sensor:
-  - Current Value: 0.04
-  - Max Value: 4000
-  - Min Value: 40
-
-Light Sensor:
-  - Current Value: 0.02
-  - Max Value: 2000
-  - Min Value: 20
+Sensors:
+    - Dirt Moisture: dirtMoisture
+    - Temperature: temp
+    - Humidity: humidity
+    - Light: light
+                        
+Parameters:
+    - Weight: weight
+    - Max Value: maxVal
+    - Min. Value: minVal
+    - Emergency Min. Value (dirtMoisture only): emergencyMinVal
 
 Commands:
 - View settings: view [sensor name] settings
@@ -125,6 +116,10 @@ Commands:
         const commandInput = document.getElementById("command");
         const terminalOutput = document.getElementById("terminal");
 
+        // Define valid sensors and parameters
+        const validSensors = ["dirtmoisture", "temp", "humidity", "light"];
+        const validParameters = ["weight", "maxval", "minval", "emergencyminval"];
+
         commandForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
@@ -133,19 +128,23 @@ Commands:
                 const commandParts = userInput.split(" ");
                 const command = commandParts[0].toLowerCase();
                 const sensorName = commandParts[1] ? commandParts[1].toLowerCase() : null;
-                const action = commandParts.slice(2).join(" ");
+                const parameter = commandParts[2] ? commandParts[2].toLowerCase() : null;
 
                 switch (command) {
                     case "view":
-                        if (sensorName && action === "settings") {
+                        if (sensorName && validSensors.includes(sensorName)) {
                             appendToTerminal("Displaying settings for: " + sensorName);
                         } else {
-                            appendToTerminal("System: Please specify a valid sensor name followed by 'settings'.");
+                            appendToTerminal("System: Sensor not found. Please specify a valid sensor name.");
                         }
                         break;
                     case "update":
-                        if (sensorName && commandParts.length >= 4) {
-                            appendToTerminal("Updating " + sensorName + " settings: " + action);
+                        if (sensorName && parameter && commandParts.length >= 4 && validSensors.includes(sensorName) && validParameters.includes(parameter)) {
+                            appendToTerminal("Updating " + sensorName + " settings: " + commandParts.slice(2).join(" "));
+                        } else if (!validSensors.includes(sensorName)) {
+                            appendToTerminal("System: Sensor not found.");
+                        } else if (!validParameters.includes(parameter)) {
+                            appendToTerminal("System: Parameter not found.");
                         } else {
                             appendToTerminal("System: Invalid update syntax. Usage: update [sensor name] [parameter] [value]");
                         }
