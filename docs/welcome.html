@@ -58,22 +58,20 @@ Commands:
     </div>
 </section>
 
-<section>
-                <h2>Enter a Command:</h2>
-                <form method="post" action="#">
-                    <div class="row gtr-uniform">
-                        <div class="col-12">
-                            <input type="text" name="command" id="command" value="" placeholder="Enter your command..." />
-                        </div>
-                        <div class="col-12">
-                            <ul class="actions">
-                                <li><input type="submit" value="Submit" class="primary" /></li>
-                            </ul>
-                        </div>
-                    </div>
-                </form>
-            </section>
+<section class="section-enter-command">
+    <h2>Enter a Command:</h2>
+    <form method="post" action="#">
+        <div class="row gtr-uniform">
+            <div class="col-12">
+                <input type="text" name="command" id="command" value="" placeholder="Enter your command..." />
+            </div>
+            <div class="col-12">
+                <ul class="actions">
+                    <li><input type="submit" value="Submit" class="primary" /></li>
+                </ul>
+            </div>
         </div>
+    </form>
 </section>
 
 <footer id="footer" class="wrapper alt">
@@ -110,6 +108,18 @@ Commands:
     .terminal-text {
         font-family: "Courier New", Courier, monospace;
         white-space: pre-line;
+    }
+
+    /* Style for the "Enter a Command" section */
+    .section-enter-command {
+        text-align: center; /* Center-align the text */
+        padding: 20px; /* Add padding as needed */
+    }
+    
+    /* Style for the input field within the "Enter a Command" section */
+    .section-enter-command input[type="text"] {
+        width: 100%; /* Make the input field take up the full width */
+        padding: 10px; /* Add padding to the input field as needed */
     }
 </style>
 
