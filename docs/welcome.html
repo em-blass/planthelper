@@ -99,9 +99,8 @@ Commands:
         padding: 20px; /* Adjust the padding as needed */
         max-width: 600px; /* Set the maximum width */
         margin: 0 auto; /* Center the container horizontally */
-        min-height: 200px; /* Set a minimum height (adjust as needed) */
-        max-height: 200px;
         overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        min-height: 200px; /* Set a minimum height (adjust as needed) */
     }
     
     /* Terminal Text Styles */
@@ -109,7 +108,7 @@ Commands:
         font-family: "Courier New", Courier, monospace;
         white-space: pre-line;
     }
-
+    
     /* Style for the "Enter a Command" section */
     .section-enter-command {
         text-align: center; /* Center-align the text */
@@ -118,8 +117,16 @@ Commands:
     
     /* Style for the input field within the "Enter a Command" section */
     .section-enter-command input[type="text"] {
-        width: 100%; /* Make the input field take up the full width */
+        width: 60%; /* Adjust the width as needed */
         padding: 10px; /* Add padding to the input field as needed */
+        margin-right: 10px; /* Add margin to the right (for spacing) */
+    }
+    
+    /* Style for the submit button within the "Enter a Command" section */
+    .section-enter-command input[type="submit"] {
+        width: auto; /* Auto width to fit the button content */
+        display: block; /* Make the button a block-level element */
+        margin: 0 auto; /* Center the button horizontally */
     }
 </style>
 
