@@ -111,23 +111,24 @@ Commands:
     /* Style for the "Enter a Command" section */
     .section-enter-command {
         display: flex;
-        flex-direction: row; /* Align children horizontally */
-        align-items: center; /* Vertically center items */
-        justify-content: center; /* Center the row in the container */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         padding: 20px;
     }
     
     /* Style for the input field within the "Enter a Command" section */
     .section-enter-command input[type="text"] {
-        width: 70%; /* Adjust the width as needed, e.g., 70% */
-        padding: 10px;
-        margin-right: 10px; /* Margin for spacing between input and button */
+        width: 60%; /* Adjust the width as needed */
+        padding: 10px; /* Add padding to the input field as needed */
+        margin-right: 10px; /* Add margin to the right (for spacing) */
     }
     
     /* Style for the submit button within the "Enter a Command" section */
     .section-enter-command input[type="submit"] {
         width: auto; /* Auto width to fit the button content */
-        padding: 10px; /* Ensure button size is visually compatible with the input */
+        display: block; /* Make the button a block-level element */
+        margin: 0 auto; /* Center the button horizontally */
     }
 </style>
 
