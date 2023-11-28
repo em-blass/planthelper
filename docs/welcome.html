@@ -58,7 +58,7 @@ Commands:
     </div>
 </section>
 
-<center><section class="section-enter-command">
+<section class="section-enter-command">
     <h2>Enter a Command:</h2>
     <form method="post" action="#">
         <div class="row gtr-uniform">
@@ -72,7 +72,7 @@ Commands:
             </div>
         </div>
     </form>
-</section></center>
+</section>
 
 <footer id="footer" class="wrapper alt">
     <div class="inner">
@@ -111,8 +111,11 @@ Commands:
     
     /* Style for the "Enter a Command" section */
     .section-enter-command {
-        text-align: center; /* Center-align the text */
-        padding: 20px; /* Add padding as needed */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
     }
     
     /* Style for the input field within the "Enter a Command" section */
