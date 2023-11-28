@@ -44,10 +44,12 @@ Parameters:
     - Emergency Min. Value (dirtMoisture only): emergencyMinVal
 
 Commands:
-- View settings: view [sensor name] settings
-- Update settings: update [sensor name] [parameter] [value]
-- Start watering: start watering
-- Stop watering: stop watering
+    - View settings: view [sensor name] settings
+    - Update settings: update [sensor name] [parameter] [value]
+    - Start watering: start watering
+    - Stop watering: stop watering
+    - Clear console: clear
+                        
                     </code>
                 </pre>
             </section>
@@ -174,6 +176,9 @@ Commands:
                         } else {
                             appendToTerminal("System: Invalid command. Did you mean 'stop watering'?");
                         }
+                        break;
+                    case "clear": // Added clear command case
+                        terminalOutput.innerHTML = "";
                         break;
                     default:
                         appendToTerminal("System: Unknown command.");
