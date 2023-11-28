@@ -7,123 +7,6 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="icon" href="planthelperfavicon.ico" type="image/x-icon">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
-    <script>
-        // AWS Configuration
-        const awsConfig = {
-            region: "us-east-2",
-            accessKeyId: "AKIA5HSVJ3PMIMSZCQ76",
-            secretAccessKey: "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"
-        };
-        AWS.config.update(awsConfig);
-        const client = new AWS.DynamoDB.DocumentClient();
-
-        // Load values from DynamoDB on page load
-        async function loadVals() {
-            try {
-                loadHelper("DirtMoisture", "dirt");
-                loadHelper("Temp", "temp");
-                loadHelper("Humidity", "hum");
-                loadHelper("Light", "light");
-            } catch (e) {
-                console.log("Error:", e);
-            }
-        }
-
-        // Helper function to load values
-        async function loadHelper(dataLabel, substring) {
-            const data = await client.get({ 
-                TableName: "Variables", 
-                Key: { label: dataLabel }
-            }).promise();
-
-            const item = data.Item;
-            document.getElementById(substring.concat('Weight')).textContent = item.weight;
-            document.getElementById(substring.concat('Min')).textContent = item.minValue; 
-            document.getElementById(substring.concat('Max')).textContent = item.maxValue;
-
-            if (dataLabel === "DirtMoisture") {
-                document.getElementById('emergency').textContent = item.emergencyMin;
-            }
-        }
-
-        async function updateVals(id, label, valueName) {
-            try {
-                const newVal = document.getElementById(id).value;
-                await client.update({
-                    TableName: 'Variables', 
-                    Key: { label: label }, 
-                    UpdateExpression: `set ${valueName} = :val`, 
-                    ExpressionAttributeValues: { ':val': newVal }
-                }).promise();
-                await loadVals();
-            } catch (error) {
-                console.log("Error: ", error);
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const commandForm = document.querySelector("form");
-            const commandInput = document.getElementById("command");
-            const terminalOutput = document.getElementById("terminal");
-
-            commandForm.addEventListener("submit", function (event) {
-                event.preventDefault();
-
-                const userInput = commandInput.value.trim();
-                if (userInput) {
-                    const commandParts = userInput.split(" ");
-                    const command = commandParts[0].toLowerCase();
-
-                    switch (command) {
-                        case "view":
-                            handleViewCommand(commandParts);
-                            break;
-                        case "update":
-                            handleUpdateCommand(commandParts);
-                            break;
-                        case "start":
-                            // Start command logic
-                            break;
-                        case "stop":
-                            // Stop command logic
-                            break;
-                        default:
-                            appendToTerminal("System: Unknown command.");
-                            break;
-                    }
-
-                    commandInput.value = "";
-                }
-            });
-
-            function handleViewCommand(parts) {
-                if (parts.length >= 3 && parts[1].toLowerCase() === "settings") {
-                    const sensorName = parts[2].toLowerCase();
-                    appendToTerminal(`Fetching settings for ${sensorName}...`);
-                    // Fetch settings logic here
-                } else {
-                    appendToTerminal("System: Invalid view command syntax.");
-                }
-            }
-
-            function handleUpdateCommand(parts) {
-                if (parts.length >= 5) {
-                    const sensorName = parts[1].toLowerCase();
-                    const parameter = parts[2].toLowerCase();
-                    const value = parts[3];
-                    appendToTerminal(`Updating ${parameter} of ${sensorName} to ${value}...`);
-                    // Update settings logic here
-                } else {
-                    appendToTerminal("System: Invalid update command syntax.");
-                }
-            }
-
-            function appendToTerminal(text) {
-                // Existing appendToTerminal function
-            }
-        });
-    </script>
 </head>
 <body class="is-preload">
 
@@ -148,26 +31,26 @@
                 <p>Use the commands below to view and manage the settings of the Plant Helper:</p>
                 <pre>
                     <code>
-Dirt Moisture Sensor (DirtMoisture):
-    - weight
-    - minValue
-    - maxValue
-    - emergencyMin
+Dirt Moisture Sensor:
+  - Current Value: 0.08
+  - Max Value: 8000
+  - Min Value: 80
+  - Emergency Minimum Value: 9
 
-Temperature Sensor (Temp):
-    - weight
-    - minValue
-    - maxValue
+Temperature Sensor:
+  - Current Value: 0.06
+  - Max Value: 6500
+  - Min Value: 65
 
-Humidity Sensor (Humidity):
-    - weight
-    - minValue
-    - maxValue
+Humidity Sensor:
+  - Current Value: 0.04
+  - Max Value: 4000
+  - Min Value: 40
 
-Light Sensor (Light):
-    - weight
-    - minValue
-    - maxValue
+Light Sensor:
+  - Current Value: 0.02
+  - Max Value: 2000
+  - Min Value: 20
 
 Commands:
 - View settings: view [sensor name] settings
@@ -250,31 +133,32 @@ Commands:
                 const commandParts = userInput.split(" ");
                 const command = commandParts[0].toLowerCase();
                 const sensorName = commandParts[1] ? commandParts[1].toLowerCase() : null;
+                const action = commandParts.slice(2).join(" ");
 
                 switch (command) {
                     case "view":
-                        if (sensorName && sensorName === "settings") {
+                        if (sensorName && action === "settings") {
                             appendToTerminal("Displaying settings for: " + sensorName);
                         } else {
-                            appendToTerminal("System: Please specify a sensor name to view its settings.");
+                            appendToTerminal("System: Please specify a valid sensor name followed by 'settings'.");
                         }
                         break;
                     case "update":
-                        if (commandParts.length >= 4) {
-                            appendToTerminal("Updating " + sensorName + " settings...");
+                        if (sensorName && commandParts.length >= 4) {
+                            appendToTerminal("Updating " + sensorName + " settings: " + action);
                         } else {
-                            appendToTerminal("System: Invalid update syntax. Please specify a sensor name and parameters.");
+                            appendToTerminal("System: Invalid update syntax. Usage: update [sensor name] [parameter] [value]");
                         }
                         break;
                     case "start":
-                        if (sensorName && sensorName === "watering") {
+                        if (sensorName === "watering") {
                             appendToTerminal("Starting watering...");
                         } else {
                             appendToTerminal("System: Invalid command. Did you mean 'start watering'?");
                         }
                         break;
                     case "stop":
-                        if (sensorName && sensorName === "watering") {
+                        if (sensorName === "watering") {
                             appendToTerminal("Stopping watering...");
                         } else {
                             appendToTerminal("System: Invalid command. Did you mean 'stop watering'?");
