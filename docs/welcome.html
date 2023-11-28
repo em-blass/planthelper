@@ -9,7 +9,6 @@
 </head>
 <body class="is-preload">
 
-<!-- Header -->
 <header id="header">
     <a href="welcome.html" class="title">Plant Helper Terminal</a>
     <nav>
@@ -19,15 +18,12 @@
     </nav>
 </header>
 
-<!-- Wrapper -->
 <div id="wrapper">
 
-    <!-- Main -->
     <section id="main" class="wrapper">
         <div class="inner">
             <h1 class="major">Plant Helper Terminal</h1>
 
-            <!-- Terminal Interface -->
             <section>
                 <h2>Welcome to the Plant Helper Terminal</h2>
                 <p>This terminal allows you to interact with the Plant Helper system, which monitors and assists in taking care of your plants.</p>
@@ -64,7 +60,6 @@ Commands:
                 </pre>
             </section>
 
-            <!-- User Input -->
             <section>
                 <h2>Enter a Command:</h2>
                 <form method="post" action="#">
@@ -84,14 +79,11 @@ Commands:
     </section>
 </div>
 
-<!-- Terminal Output -->
 <section id="terminal-output">
     <div id="terminal" class="terminal-container">
-        <!-- Output text will be displayed here -->
     </div>
 </section>
 
-<!-- Footer -->
 <footer id="footer" class="wrapper alt">
     <div class="inner">
         <ul class="menu">
@@ -99,8 +91,7 @@ Commands:
         </ul>
     </div>
 </footer>
-
-<!-- Scripts -->
+    
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.scrollex.min.js"></script>
 <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -128,7 +119,6 @@ Commands:
 </style>
 
 <script>
-    // JavaScript code to handle user input and display responses
     document.addEventListener("DOMContentLoaded", function () {
         const commandForm = document.querySelector("form");
         const commandInput = document.getElementById("command");
@@ -139,7 +129,6 @@ Commands:
 
             const userInput = commandInput.value.trim();
             if (userInput) {
-                // Split the command into parts
                 const commandParts = userInput.split(" ");
                 const command = commandParts[0].toLowerCase();
                 const sensorName = commandParts[1] ? commandParts[1].toLowerCase() : null;
@@ -147,14 +136,12 @@ Commands:
                 switch (command) {
                     case "view":
                         if (sensorName && sensorName === "settings") {
-                            // Add logic to retrieve and display settings for a specific sensor
                             appendToTerminal("Displaying settings for: " + sensorName);
                         } else {
                             appendToTerminal("System: Please specify a sensor name to view its settings.");
                         }
                         break;
                     case "update":
-                        // Add logic to update settings for a specific sensor
                         if (commandParts.length >= 4) {
                             appendToTerminal("Updating " + sensorName + " settings...");
                         } else {
@@ -180,7 +167,6 @@ Commands:
                         break;
                 }
 
-                // Clear the input field
                 commandInput.value = "";
             }
         });
@@ -191,7 +177,6 @@ Commands:
             newLine.textContent = text;
             terminalOutput.appendChild(newLine);
 
-            // Scroll to the bottom of the terminal
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
         }
     });
