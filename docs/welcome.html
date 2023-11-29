@@ -149,6 +149,7 @@ Commands:
           switch (command) {
             case "view":
               if (sensorName && validSensors.includes(sensorName)) {
+                terminalOutput.innerHTML = "";
                 appendToTerminal("Displaying settings for: " + sensorName);
                 viewValues(sensorName);
               } else {
@@ -224,6 +225,9 @@ Commands:
                 );
               }
               break;
+            case "clear":
+                terminalOutput.innerHTML = "";
+                break;
             case "stop":
               if (sensorName === "watering") {
                 appendToTerminal("Stopping watering...");
