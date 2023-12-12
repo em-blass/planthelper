@@ -46,25 +46,24 @@
 
         <pre>
             <code>
-<b>Sensors:</b>
+Sensors:
     - Dirt Moisture: dirtMoisture
     - Temperature: temp
     - Humidity: humidity
     - Light: light
-                        
-<b>Parameters:</b>
+                
+Parameters:
     - Weight: weight
     - Max Value: maxVal
     - Min. Value: minVal
     - Emergency Min. Value (dirtMoisture only): emergencyMinVal
 
-<b>Commands:</b>
+Commands:
     - View settings: view [sensor name] settings
-    - View recent data: read [rows count]
     - Update settings: update [sensor name] [parameter] [value]
-    - Update interval: interval [seconds]
-    - Update time range: range [minimum seconds] [maximum seconds]
-    - Force watering: water [true/false]
+    - Start watering: start watering
+    - Stop watering: stop watering
+    - Clear terminal: clear
                 </code>
             </pre>
     </section>
@@ -123,8 +122,8 @@
         margin-right: 10px; /* Add margin to the right (for spacing) */
     }
 </style>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
   <script>
     awsConfig = {
       region: "us-east-2",
@@ -133,7 +132,7 @@
     };
     AWS.config.update(awsConfig);
     client = new AWS.DynamoDB.DocumentClient();
-
+    
     document.addEventListener("DOMContentLoaded", async function () {
       const commandForm = document.querySelector("form");
       const commandInput = document.getElementById("command");
@@ -160,52 +159,6 @@
               }
               break;
             case "update":
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
-<script>
-  awsConfig = {
-    region: "us-east-2",
-    accessKeyId: "AKIA5HSVJ3PMIMSZCQ76",
-    secretAccessKey: "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"
-  };
-  AWS.config.update(awsConfig);
-  client = new AWS.DynamoDB.DocumentClient();
-
-  document.addEventListener("DOMContentLoaded", async function () {
-    const commandForm = document.querySelector("form");
-    const commandInput = document.getElementById("command");
-    const terminalOutput = document.getElementById("terminal");
-    const validSensors = ["dirtmoisture", "temp", "humidity", "light"];
-    const validParameters = ["weight", "maxval", "minval", "emergencyminval"];
-    commandForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      const userInput = commandInput.value.trim();
-      if (userInput) {
-        const commandParts = userInput.split(" ");
-        const command = commandParts[0].toLowerCase();
-        const sensorName = commandParts[1] ? commandParts[1].toLowerCase() : null;
-        const parameter = commandParts[2] ? commandParts[2].toLowerCase() : null;
-        switch (command) {
-          case "view":
-            if (sensorName && validSensors.includes(sensorName)) {
-              appendToTerminal("Displaying settings for: " + sensorName);
-              viewValues(sensorName);
-            } else {
-              appendToTerminal(
-                "System: Sensor not found. Please specify a valid sensor name."
-              );
-            }
-            break;
-          case "update":
-            if (
-              sensorName &&
-              parameter &&
-              commandParts.length >= 4 &&
-              validSensors.includes(sensorName) &&
-              validParameters.includes(parameter) &&
-              !(sensorName != "dirtmoisture" && parameter == "emergencyminval")
-            ) {
-              newValue = parseFloat(commandParts[3]);
-              console.log(newValue <= 1);
               if (
                 sensorName &&
                 parameter &&
@@ -250,22 +203,15 @@
               } else if (
                 sensorName != "dirtmoisture" &&
                 parameter == "emergencyminval"
-                !isNaN(newValue) &&
-                newValue >= 0 &&
-                ((newValue <= 1 && parameter == "weight") ||
-                  parameter != "weight")
               ) {
                 appendToTerminal(
                   "System: " +
-                  "Updating " +
                     sensorName +
                     " does not have parameter: emergencyMinVal"
                 );
               } else {
                 appendToTerminal(
                   "System: Invalid update syntax. Usage: update [sensor name] [parameter] [value]"
-                    " settings: " +
-                    [parameter, newValue].join(" ")
                 );
               }
               break;
@@ -275,20 +221,8 @@
                 updateVals("global", "forcewater", bool === "true");
                 appendToTerminal("Force Watering: " + bool);
               } else {
-                updateVals(sensorName, parameter, newValue);
-              } else if (isNaN(newValue)) {
-                appendToTerminal("System: Invalid Value: " + commandParts[3]);
-              } else if (!(newValue > 0)) {
-                appendToTerminal("System: Value must be 0 or larger.");
-              } else if (
-                !(
-                  (newValue <= 1 && parameter == "weight") ||
-                  parameter != "weight"
-                )
-              ) {
                 appendToTerminal(
                   "System: Invalid boolean."
-                  "System: Weight values must be between 0 and 1 [inclusive]."
                 );
               }
               break;
@@ -308,93 +242,30 @@
                 } else {
                   appendToTerminal("System: Interval must be at least 10 seconds");
                 }
-            } else if (!validSensors.includes(sensorName)) {
-              appendToTerminal("System: Sensor not found.");
-            } else if (!validParameters.includes(parameter)) {
-              appendToTerminal("System: Parameter not found.");
-            } else if (
-              sensorName != "dirtmoisture" &&
-              parameter == "emergencyminval"
-            ) {
-              appendToTerminal(
-                "System: " +
-                  sensorName +
-                  " does not have parameter: emergencyMinVal"
-              );
-            } else {
-              appendToTerminal(
-                "System: Invalid update syntax. Usage: update [sensor name] [parameter] [value]"
-              );
-            }
-            break;
-          case "water":
-            bool = commandParts[1];
-            if (bool === "true" || bool === "false") {
-              updateVals("global", "forcewater", bool === "true");
-              appendToTerminal("Force Watering: " + bool);
-            } else {
-              appendToTerminal(
-                "System: Invalid boolean."
-              );
-            }
-            break;
-          case "read":
-            rows = parseInt(commandParts[1]);
-            if (isNaN(rows)) {
-              rows = 1;
-            }
-            readRows(rows);
-            break;
-          case "interval":
-            seconds = commandParts[1];
-            if (!isNaN(seconds)) {
-              if (seconds >= 10) {
-                updateVals("global", "intervaltime", seconds);
-                appendToTerminal("Updating interval: " + seconds);
               } else {
                 appendToTerminal("System: Invalid interval value.");
-                appendToTerminal("System: Interval must be at least 10 seconds");
               }
               break;
             case "range":
               min = parseInt(commandParts[1])
               max = parseInt(commandParts[2])
-            } else {
-              appendToTerminal("System: Invalid interval value.");
-            }
-            break;
-          case "range":
-            min = parseInt(commandParts[1])
-            max = parseInt(commandParts[2])
 
               if (isNaN(min) || min < 0) {
                 appendToTerminal("System: Invalid minimum value.");
                 break;
               }
 
-
-            if (isNaN(min) || min < 0) {
-              appendToTerminal("System: Invalid minimum value.");
-              break;
-            }
+              
 
               if (isNaN(max)) {
                 appendToTerminal("System: Invalid maximum value.");
                 break;
               }
-            if (isNaN(max)) {
-              appendToTerminal("System: Invalid maximum value.");
-              break;
-            }
 
               if (min >= max) {
                 appendToTerminal("System: Minimum must be smaller than maximum.");
                 break;              
               }
-            if (min >= max) {
-              appendToTerminal("System: Minimum must be smaller than maximum.");
-              break;              
-            }
 
               updateVals("global", "mintime", min);
               updateVals("global", "maxtime", max);
@@ -405,25 +276,16 @@
               break;
           }
           commandInput.value = "";
-            updateVals("global", "mintime", min);
-            updateVals("global", "maxtime", max);
-            appendToTerminal("Updating range: " + min + "-" + max + " seconds.");
-            break;
-          default:
-            appendToTerminal("System: Unknown command.");
-            break;
         }
       });
-
+    
       function appendToTerminal(text) {
         const newLine = document.createElement("div");
         newLine.className = "terminal-text";
         newLine.textContent = text;
         terminalOutput.appendChild(newLine);
         terminalOutput.scrollTop = terminalOutput.scrollHeight;
-        commandInput.value = "";
       }
-    });
 
       async function readRows(rows) {
         data = await client.get({
@@ -465,7 +327,7 @@
         if (dataLabel == "dirtmoisture")
           appendToTerminal("--Emergency Min. Value: ".concat(item.emergencyminval));
       }
-
+    
       async function updateVals(labelName, parameter, newVal) {
         await client
           .update({
@@ -475,69 +337,9 @@
             ExpressionAttributeValues: { ":val": newVal }
           })
           .promise();
-    function appendToTerminal(text) {
-      const newLine = document.createElement("div");
-      newLine.className = "terminal-text";
-      newLine.textContent = text;
-      terminalOutput.appendChild(newLine);
-      terminalOutput.scrollTop = terminalOutput.scrollHeight;
-    }
-
-    async function readRows(rows) {
-      data = await client.get({
-        TableName: "Data",
-        Key: { id: -1 }
-      }).promise();
-      maxID = data.Item.max;
-      for (i = 0; i < rows; i++) {
-        currentRow = maxID - i;
-        if (currentRow >= 0) {
-          data = await client.get({
-            TableName: "Data",
-            Key: { id: currentRow }
-          }).promise();
-          item = data.Item;
-          string = "Entry ID: " + item.id + " (" + item.time + ")\n" +
-                  "--Dirt Moisture: " + item.dirtmoisture + "\n" +
-                  "--Temperature: " + item.temp + "\n" +
-                  "--Light: " + item.light + "\n" +
-                  "--Humidity: " + item.humidity + "\n" +
-                  "--Watered: " + item.watered;
-          appendToTerminal(string);
-        } 
       }
     });
   </script>
-    }
-    async function viewValues(dataLabel) {
-      data = await client
-        .get({
-          TableName: "Variables",
-          Key: { label: dataLabel }
-        })
-        .promise();
-      console.log(data);
-      item = data.Item;
-      string = "--Weight: " + item.weight + "\n" +
-              "--Max Value: " + item.maxval + "\n" +
-              "--Min. Value: " + item.minval;
-      appendToTerminal(string);
-      if (dataLabel == "dirtmoisture")
-        appendToTerminal("--Emergency Min. Value: ".concat(item.emergencyminval));
-    }
-
-    async function updateVals(labelName, parameter, newVal) {
-      await client
-        .update({
-          TableName: "Variables",
-          Key: { label: labelName },
-          UpdateExpression: "set ".concat(parameter.concat(" = :val")),
-          ExpressionAttributeValues: { ":val": newVal }
-        })
-        .promise();
-    }
-  });
-</script>
-
+    
 </body>
 </html>
