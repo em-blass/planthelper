@@ -55,13 +55,21 @@ void setup() {
 }
 
 void loop() {
+  // Check if data is available to read from the serial port
+  if (Serial.available() > 0) {
+    String input = Serial.readStringUntil('\n'); // Read the data from serial port
+    input.trim(); // Remove any whitespace
+    if (input == "WATER_ON") {
+      // If the input is "WATER_ON", activate the pump for 5 seconds
+      digitalWrite(pumpPin, HIGH);
+      delay(5000); // Pump runs for 5000 milliseconds (5 seconds)
+      digitalWrite(pumpPin, LOW);
+      Serial.println("Pump activated for 5 seconds.");
+    }
+  }
+  
   int lightLevel = analogRead(photoresistorPin);
   int soilMoistureLevel = 1023 - analogRead(soilMoistureSensorPin);
-
-  Serial.print("Light Level: ");
-  Serial.print(lightLevel);
-  Serial.print(", Soil Moisture Level: ");
-  Serial.println(soilMoistureLevel);
 
   float temperatureC = 0;
   float humidity = 0;
@@ -70,25 +78,19 @@ void loop() {
     Serial.print("Read DHT22 failed, err="); Serial.println(err);delay(1000);
     return;
   }
-
   float temperatureF = temperatureC * 9.0 / 5.0 + 32;
 
-  Serial.print("Humidity: ");
-  Serial.print(humidity);
-  Serial.print(" %, Temperature: ");
+  // Send sensor data over Serial
+  Serial.print(lightLevel);
+  Serial.print(",");
+  Serial.print(soilMoistureLevel);
+  Serial.print(",");
   Serial.print(temperatureF);
-  Serial.println(" *F");
+  Serial.print(",");
+  Serial.println(humidity);
 
   checkAndWater(soilMoistureLevel, temperatureF, humidity, lightLevel);
 
-  if (Serial.available() > 0) {
-    String command = Serial.readStringUntil('\n');
-    if (command == "WATER") {
-      // Assuming TotalPercent is calculated or available globally
-      water(TotalPercent); 
-    }
-  }
-  
   delay(2000);
 }
 
