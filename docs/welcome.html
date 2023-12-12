@@ -123,7 +123,8 @@ Commands:
     }
 </style>
     
-<script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
+  <script>
     awsConfig = {
       region: "us-east-2",
       accessKeyId: "AKIA5HSVJ3PMIMSZCQ76",
@@ -149,7 +150,6 @@ Commands:
           switch (command) {
             case "view":
               if (sensorName && validSensors.includes(sensorName)) {
-                terminalOutput.innerHTML = "";
                 appendToTerminal("Displaying settings for: " + sensorName);
                 viewValues(sensorName);
               } else {
@@ -215,28 +215,61 @@ Commands:
                 );
               }
               break;
-            case "start":
-              if (sensorName === "watering") {
-                appendToTerminal("Starting watering...");
-                updateWaterStatus(true);
+            case "water":
+              bool = commandParts[1];
+              if (bool === "true" || bool === "false") {
+                updateVals("global", "forcewater", bool === "true");
+                appendToTerminal("Force Watering: " + bool);
               } else {
                 appendToTerminal(
-                  "System: Invalid command. Did you mean 'start watering'?"
+                  "System: Invalid boolean."
                 );
               }
               break;
-            case "clear":
-                terminalOutput.innerHTML = "";
-                break;
-            case "stop":
-              if (sensorName === "watering") {
-                appendToTerminal("Stopping watering...");
-                updateWaterStatus(false);
-              } else {
-                appendToTerminal(
-                  "System: Invalid command. Did you mean 'stop watering'?"
-                );
+            case "read":
+              rows = parseInt(commandParts[1]);
+              if (isNaN(rows)) {
+                rows = 1;
               }
+              readRows(rows);
+              break;
+            case "interval":
+              seconds = commandParts[1];
+              if (!isNaN(seconds)) {
+                if (seconds >= 10) {
+                  updateVals("global", "intervaltime", seconds);
+                  appendToTerminal("Updating interval: " + seconds);
+                } else {
+                  appendToTerminal("System: Interval must be at least 10 seconds");
+                }
+              } else {
+                appendToTerminal("System: Invalid interval value.");
+              }
+              break;
+            case "range":
+              min = parseInt(commandParts[1])
+              max = parseInt(commandParts[2])
+
+              if (isNaN(min) || min < 0) {
+                appendToTerminal("System: Invalid minimum value.");
+                break;
+              }
+
+              
+
+              if (isNaN(max)) {
+                appendToTerminal("System: Invalid maximum value.");
+                break;
+              }
+
+              if (min >= max) {
+                appendToTerminal("System: Minimum must be smaller than maximum.");
+                break;              
+              }
+
+              updateVals("global", "mintime", min);
+              updateVals("global", "maxtime", max);
+              appendToTerminal("Updating range: " + min +"-" + max + " seconds.");
               break;
             default:
               appendToTerminal("System: Unknown command.");
@@ -253,7 +286,31 @@ Commands:
         terminalOutput.appendChild(newLine);
         terminalOutput.scrollTop = terminalOutput.scrollHeight;
       }
-    
+
+      async function readRows(rows) {
+        data = await client.get({
+          TableName: "Data",
+          Key: { id: -1 }
+        }).promise();
+        maxID = data.Item.max;
+        for (i = 0; i < rows; i++) {
+          currentRow = maxID - i;
+          if (currentRow >= 0) {
+            data = await client.get({
+              TableName: "Data",
+              Key: { id: currentRow }
+            }).promise();
+            item = data.Item;
+            string = "Entry ID: " + item.id + " (" + item.time + ")\n" +
+                    "--Dirt Moisture: " + item.dirtmoisture + "\n" +
+                    "--Temperature: " + item.temp + "\n" +
+                    "--Light: " + item.light + "\n" +
+                    "--Humidity: " + item.humidity + "\n" +
+                    "--Watered: " + item.watered;
+            appendToTerminal(string);
+          } 
+        }
+      }
       async function viewValues(dataLabel) {
         data = await client
           .get({
@@ -263,37 +320,26 @@ Commands:
           .promise();
         console.log(data);
         item = data.Item;
-        appendToTerminal("--Weight: ".concat(item.weight));
-        appendToTerminal("--Max Value: ".concat(item.maxval));
-        appendToTerminal("--Min. Value: ".concat(item.minval));
+        string = "--Weight: " + item.weight + "\n" +
+                "--Max Value: " + item.maxval + "\n" +
+                "--Min. Value: " + item.minval;
+        appendToTerminal(string);
         if (dataLabel == "dirtmoisture")
           appendToTerminal("--Emergency Min. Value: ".concat(item.emergencyminval));
       }
     
-      async function updateVals(sensorName, parameter, newVal) {
+      async function updateVals(labelName, parameter, newVal) {
         await client
           .update({
             TableName: "Variables",
-            Key: { label: sensorName },
+            Key: { label: labelName },
             UpdateExpression: "set ".concat(parameter.concat(" = :val")),
             ExpressionAttributeValues: { ":val": newVal }
           })
           .promise();
-        await loadVals();
-      }
-    
-      async function updateWaterStatus(newStatus) {
-        await client
-          .update({
-            TableName: "Variables",
-            Key: { label: "waterStatus" },
-            UpdateExpression: "set isWatering = :val",
-            ExpressionAttributeValues: { ":val": newStatus }
-          })
-          .promise();
       }
     });
-</script>
+  </script>
     
 </body>
 </html>
