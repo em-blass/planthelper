@@ -55,18 +55,19 @@ void setup() {
 }
 
 void loop() {
-  // Check if data is available to read from the serial port
-  if (Serial.available() > 0) {
-    String input = Serial.readStringUntil('\n'); // Read the data from serial port
-    input.trim(); // Remove any whitespace
-    if (input == "WATER_ON") {
-      // If the input is "WATER_ON", activate the pump for 5 seconds
-      digitalWrite(pumpPin, HIGH);
-      delay(5000); // Pump runs for 5000 milliseconds (5 seconds)
-      digitalWrite(pumpPin, LOW);
-      Serial.println("Pump activated for 5 seconds.");
+    // Check if data is available to read from the serial port
+    if (Serial.available() > 0) {
+        String input = Serial.readStringUntil('\n'); // Read the data from serial port
+        input.trim(); // Remove any whitespace
+
+        if (input == "WATER_ON" || input == "FORCE_WATER") {
+            // If the input is "WATER_ON" or "FORCE_WATER", activate the pump for 5 seconds
+            digitalWrite(pumpPin, HIGH);
+            delay(5000); // Pump runs for 5000 milliseconds (5 seconds)
+            digitalWrite(pumpPin, LOW);
+            Serial.println("Pump activated for 5 seconds.");
+        }
     }
-  }
   
   int lightLevel = analogRead(photoresistorPin);
   int soilMoistureLevel = 1023 - analogRead(soilMoistureSensorPin);
