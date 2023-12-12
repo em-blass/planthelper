@@ -301,9 +301,9 @@ Commands:
           item = data.Item;
           string = "Entry ID: " + item.id + " (" + item.time + ")\n" +
                   "--Dirt Moisture: " + item.dirtmoisture + "\n" +
-                  "--Temperature: " + item.temp + "\n" +
-                  "--Light: " + item.light + "\n" +
-                  "--Humidity: " + item.humidity + "\n" +
+                  "--Temperature: " + item.temp + "F" +  "\n" +
+                  "--Light Level: " + (item.light + 25) + \n" +
+                  "--Humidity: " + item.humidity + "%" + "\n" +
                   "--Watered: " + item.watered;
           appendToTerminal(string);
         } 
