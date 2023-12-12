@@ -81,6 +81,14 @@ void loop() {
 
   checkAndWater(soilMoistureLevel, temperatureF, humidity, lightLevel);
 
+  if (Serial.available() > 0) {
+    String command = Serial.readStringUntil('\n');
+    if (command == "WATER") {
+      // Assuming TotalPercent is calculated or available globally
+      water(TotalPercent); 
+    }
+  }
+  
   delay(2000);
 }
 
