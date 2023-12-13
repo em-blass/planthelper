@@ -124,7 +124,7 @@
     }
 </style>
     
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1140.0/aws-sdk.min.js"></script>
   <script>
     awsConfig = {
       region: "us-east-2",
@@ -133,33 +133,6 @@
     };
     AWS.config.update(awsConfig);
     client = new AWS.DynamoDB.DocumentClient();
-
-    document.addEventListener("DOMContentLoaded", function () {
-    const commandForm = document.querySelector("form");
-    const commandInput = document.getElementById("command");
-    const terminalOutput = document.getElementById("terminal");
-    const socket = new WebSocket("ws://localhost:8765"); // WebSocket server address
-
-    // Handle WebSocket connection open event
-    socket.addEventListener("open", (event) => {
-        console.log("WebSocket connection opened.");
-    });
-
-    // Handle WebSocket messages (responses from the Python server)
-    socket.addEventListener("message", (event) => {
-        const response = event.data;
-        appendToTerminal(response);
-    });
-
-    // Handle form submission to send commands to the Python server
-    commandForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        const userInput = commandInput.value.trim();
-        if (userInput) {
-            socket.send(userInput); // Send the user's command to the server
-            commandInput.value = "";
-        }
-    });
     
     document.addEventListener("DOMContentLoaded", async function () {
       const commandForm = document.querySelector("form");
@@ -334,6 +307,7 @@
                     "--Temperature: " + item.temp + "\n" +
                     "--Light: " + item.light + "\n" +
                     "--Humidity: " + item.humidity + "\n" +
+                    "--Watered: " + item.watered;
             appendToTerminal(string);
           } 
         }
