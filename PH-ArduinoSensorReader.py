@@ -74,7 +74,7 @@ def check_for_command(cmd_queue):
         
 def checkForceWater():
     try:
-        table = dynamodb.Table("Variables") 
+        table = dynamodb.Table("Variables")
         response = table.get_item(Key={"label": "global"})
         if 'Item' in response and response['Item']['forcewater']:
             return response['Item']['forcewater']
