@@ -5,9 +5,8 @@ The Automated Plant Caretaker is an innovative IoT project aimed at revolutioniz
 - Utilizes a Raspberry Pi for sensor data processing and system control.
 - Monitors plant vitals through precision sensors.
 - Executes watering actions based on data-driven decisions.
-- Records environmental data for trend analysis via a cloud service.
 - Provides a web application for remote monitoring and manual control.
-- Sends alerts to users when intervention is needed.
+- DynamoDB AWS Integration
 
 ## Parts Required
 - Raspberry Pi 3 Model B+
